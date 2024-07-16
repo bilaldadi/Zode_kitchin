@@ -1,11 +1,17 @@
 import './App.css'
-import { Welcome } from './components/welcome'
+import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
 
-function App() {
+
+
+function App({ children }) {
 
   return (
     <>
-      <Welcome />
+        <Navbar/>
+        {children}
+        <Footer />
+
     </>
   )
 }
