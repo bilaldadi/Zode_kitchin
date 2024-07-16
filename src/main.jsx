@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import App from './App.jsx';
 import {Welcome} from "./components/welcome.jsx";
-import {Beverages} from './components/Beverages.jsx';
+import {Beverages} from "./components/Beverages.jsx";
 import { Snack } from './components/Snack.jsx';
 import {Cart} from './components/Cart.jsx';
 import {CartProvider} from "./context/CartContext.js.jsx";
