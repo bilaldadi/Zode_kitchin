@@ -34,18 +34,18 @@ export function Cart() {
                             <label htmlFor="office">Office Number:</label>
                             <select id="office" name="office">
                                 <option value="">Select Office</option>
-                                <option value="01">01</option>
-                                <option value="02">02</option>
-                                <option value="03">03</option>
-                                <option value="04">04</option>
-                                <option value="05">05</option>
-                                <option value="06">06</option>
-                                <option value="07">07</option>
-                                <option value="08">08</option>
-                                <option value="09">09</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
+                                <option value="01">01 - CEO</option>
+                                <option value="02">02 - CFO</option>
+                                <option value="03">03 - COO</option>
+                                <option value="04">04 - CTO</option>
+                                <option value="05">05 - IT</option>
+                                <option value="06">06 - Finance</option>
+                                <option value="07">07 - meeting Room</option>
+                                <option value="08">08 - Supply chain</option>
+                                <option value="09">09 - comercial</option>
+                                <option value="10">10 - HR</option>
+                                <option value="11">11 - test</option>
+                                <option value="12">12 - test</option>
                             </select>
                         </div>
                         <div className="form-group">

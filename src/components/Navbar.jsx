@@ -3,7 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping,faUser } from '@fortawesome/free-solid-svg-icons'
 
 
 const Navbar = () => {
@@ -27,30 +27,35 @@ const Navbar = () => {
             <div className="Nav-container">
                 <div className="navbar" data-aos="fade-down" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="800">
                     <div className="menu">
-                        <Link to='/' style={{textDecoration: 'none'}}>
-                            <span className="menu-item">Home</span>
-                        </Link>
 
-                        <Link to='/beverages' style={{textDecoration: 'none'}}>
-                            <span className="menu-item">Account</span>
-                        </Link>
+                    <Link to='/'>
+                        <div className="menu-item"> <img src="https://static.wixstatic.com/shapes/cad8ae_c0e3627a6c7145c9a85dcb4b3c00484b.svg" alt="Logo" style={{height: '40px'}}/></div>
+                    </Link>
 
+                    <Link to='/' style={{textDecoration: 'none'}}>
+                        <div className="menu-item">Home</div>
+                    </Link>
 
-                        <Link to='/'>
-                           <span className="menu-item"> <img src="https://static.wixstatic.com/shapes/cad8ae_c0e3627a6c7145c9a85dcb4b3c00484b.svg"
-                                 alt="Logo" style={{height: '40px'}}/>
-                           </span>
-                        </Link>
+                    <Link to='/' style={{textDecoration: 'none'}}>    
+                        <div className="menu-item">About</div>
+                    </Link>
 
-                        <Link to='/beverages' style={{textDecoration: 'none'}}>
-                            <span className="menu-item">Beverages</span>
-                        </Link>
-                        <Link to='/snacks' style={{textDecoration: 'none'}}>
-                            <span className="menu-item">Snacks</span>
-                        </Link>
-                        {/*<Link to='/cart' style={{textDecoration: 'none'}}>*/}
-                        {/*    <span className="menu-item"> <FontAwesomeIcon icon={faCartShopping}/> </span>*/}
-                        {/*</Link>*/}
+                    <Link to='/beverages' style={{textDecoration: 'none'}}>
+                        <div className="menu-item"> Beverages</div>
+                    </Link>
+                        
+                    <Link to='/snacks' style={{textDecoration: 'none'}}>
+                        <div className="menu-item">Snacks</div>
+                    </Link>
+
+                    <Link to='/account' style={{textDecoration: 'none'}}>
+                        <div className="menu-item"><FontAwesomeIcon icon={faUser} /></div>
+                    </Link>
+
+                    <Link to='/cart' style={{textDecoration: 'none'}}>
+                        <div className="menu-item"><FontAwesomeIcon icon={faCartShopping}/></div>
+                    </Link>
+
                     </div>
                 </div>
             </div>
@@ -59,17 +64,19 @@ const Navbar = () => {
             {/* Mobile Navbar */}
             <div className="Mobile-Nav-container">
                 <div className="navbar-mobile">
+
                     <div className="logo">
                         <Link to='/'>
                             <img src="https://static.wixstatic.com/shapes/cad8ae_c0e3627a6c7145c9a85dcb4b3c00484b.svg"
                                  alt="Logo" style={{height: '40px'}}/>
                         </Link>
                     </div>
+
                     <div className="hamburger" onClick={toggleMenu}>
                         &#9776; {/* This is the hamburger icon */}
                     </div>
 
-                        <div className={`menu ${isMenuOpen ? 'show' : ''}`}>
+                    <div className={`menu ${isMenuOpen ? 'show' : ''}`}>
                             <div className="close-menu" onClick={toggleMenu}>
                                 &times; {/* This is the close icon */}
                             </div>
@@ -94,9 +101,11 @@ const Navbar = () => {
                                     <span className="menu-item" onClick={toggleMenu}> <FontAwesomeIcon icon={faCartShopping}/> </span>
                                 </Link>
                             </div>
-                        </div>
+                    </div>
+
                 </div>
             </div>
+
         </div>
     );
 };

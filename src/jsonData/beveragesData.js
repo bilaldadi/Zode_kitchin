@@ -7,7 +7,11 @@ const beveragesData = {
       description: "A classic soda beverage.",
       price: 1.50,
       available: true,
-      preferences: ["normal", "sugar"]
+      quantity: 2,
+      preferences: [
+        "normal",
+        "sugar"
+      ]
     },
     {
       id: 2,

@@ -33,13 +33,10 @@
 
 }
 
-.navbar .logo {
-  text-align: center;
-}
-
 .navbar .menu {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .navbar .menu-item {
@@ -48,9 +45,10 @@
   color: white;
   font-size: 18px;
   transition: color 0.3s ease-in-out;
+  text-align: center;
 }
 
-.navbar .menu-item:hover {
+.menu-item:hover {
   color: #05ccb5;
 }
 
@@ -171,21 +169,30 @@ body.no-scroll {
 
 }
 
-.cardsContainer{
-    display: flex;
-    justify-content: center;
-    gap: clamp(5rem, 2vw, 3rem);
-    flex-wrap: wrap;
-    margin-top: 5rem;
-    padding: 1rem;
+.cardsContainer {
+  display: flex;
+  justify-content: center;
+  
+  flex-wrap: wrap;
+  margin-top: 5rem;
+  padding: 1rem;
 }
 
+
+
 @media (max-width: 768px) {
+
   .cardsContainer {
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-around; /* Center the two cards within the container */
   }
+
+.cardsContainer .card {
+  flex: 1 1 45%; /* Adjust the flex-basis to roughly 50% minus the gap for two cards per row */
+  max-width: 40%; /* Ensure the max width does not exceed 50% */
+  box-sizing: border-box; /* Ensure padding/margin does not affect the width */
 }
+}
+
 
 /*#region*/
 .card {
@@ -296,7 +303,7 @@ body.no-scroll {
   color: #fff;
   transition: 0.5s;
   cursor: pointer;
-  overflow: hidden; /* Ensure the image doesn't overflow the card */
+   overflow: hidden;/* Ensure the image doesn't overflow the card */
   border-radius: 1.2em; /* Added border-radius directly to the card for smooth edges */
 }
 
@@ -322,7 +329,7 @@ body.no-scroll {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #01d0b7, #2e1065);
+  background: linear-gradient(45deg, #01d0b7, white);
   filter: blur(25px);
 }
 
@@ -416,7 +423,10 @@ body.no-scroll {
 
     padding: 1rem;
     width: 14rem;
-    background-color: var(--bg-card);
+    background: rgba(255, 255, 255, 0.21);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
     border-radius: 1rem;
   }
@@ -475,9 +485,8 @@ body.no-scroll {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.25rem;
-
-    margin-top: 0.25rem;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
   }
 
   .list-size .item-list {
@@ -486,27 +495,18 @@ body.no-scroll {
 
   .list-size .item-list-button {
     cursor: pointer;
-
     padding: 0.5rem;
-    background-color: var(--zinc-800);
-
+    border-radius: 43.75px;
+    background: #03D1B8;
     font-size: 0.75rem;
-    color: var(--light);
-
-    border: 2px solid var(--zinc-800);
-    border-radius: 0.25rem;
-
+    color: black;
+    border: none;
     transition: all 0.3s ease-in-out;
+    width: 5rem;
   }
 
-  .item-list-button:hover {
-    border: 2px solid var(--light);
-  }
   .item-list-button:focus {
     background-color: var(--primary);
-
-    border: 2px solid var(--primary-shadow);
-
     box-shadow: inset 0px 1px 4px var(--primary-shadow);
   }
 
@@ -581,106 +581,20 @@ body.no-scroll {
   }
 
 
-  .btn {
-    --border-color: linear-gradient(-45deg,  #7e03aa, #00fffb);
-    --border-width: 0.125em;
-    --curve-size: 0.5em;
-    --blur: 30px;
-    --bg: #080312;
-    --color: #afffff;
-    color: var(--color);
-    cursor: pointer;
-    /* use position: relative; so that BG is only for .btn */
-    position: relative;
-    isolation: isolate;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    place-content: center;
-    padding: 0.5em 1.5em;
-    font-size: 15px;
-    border: 0;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);
-    clip-path: polygon(
-      /* Top-left */ 0% var(--curve-size),
-      var(--curve-size) 0,
-      /* top-right */ 100% 0,
-      100% calc(100% - var(--curve-size)),
-      /* bottom-right 1 */ calc(100% - var(--curve-size)) 100%,
-      /* bottom-right 2 */ 0 100%
-    );
-    transition: color 250ms;
-
+  .btn{
+  display: flex;
+  width: 155.663px;
+  height: 32px;
+  padding: 5.616px 28.082px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3.259px;
+  border-radius: 27.159px;
+  background: linear-gradient(90deg, #6100D6 0%, #03D1B8 100%), var(--Neutral-Colour-Neutral-Colour, #FFF);
+  border: none;
+  transition: all 0.3s ease-in-out;
   }
 
-  .btn::after,
-  .btn::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-  }
-
-  .btn::before {
-    background: var(--border-color);
-    background-size: 300% 300%;
-    animation: move-bg7234 5s ease infinite;
-    z-index: -2;
-  }
-
-  @keyframes move-bg7234 {
-    0% {
-      background-position: 31% 0%;
-    }
-
-    50% {
-      background-position: 70% 100%;
-    }
-
-    100% {
-      background-position: 31% 0%;
-    }
-  }
-
-  .btn::after {
-    background: var(--bg);
-    z-index: -1;
-    clip-path: polygon(
-      /* Top-left */ var(--border-width)
-        calc(var(--curve-size) + var(--border-width) * 0.5),
-      calc(var(--curve-size) + var(--border-width) * 0.5) var(--border-width),
-      /* top-right */ calc(100% - var(--border-width)) var(--border-width),
-      calc(100% - var(--border-width))
-        calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
-      /* bottom-right 1 */
-        calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
-        calc(100% - var(--border-width)),
-      /* bottom-right 2 */ var(--border-width) calc(100% - var(--border-width))
-    );
-    transition: clip-path 500ms;
-  }
-
-  .btn:where(:hover, :focus)::after {
-    clip-path: polygon(
-      /* Top-left */ calc(100% - var(--border-width))
-        calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
-      calc(100% - var(--border-width)) var(--border-width),
-      /* top-right */ calc(100% - var(--border-width)) var(--border-width),
-      calc(100% - var(--border-width))
-        calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
-      /* bottom-right 1 */
-        calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
-        calc(100% - var(--border-width)),
-      /* bottom-right 2 */
-        calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
-        calc(100% - var(--border-width))
-    );
-    transition: 200ms;
-  }
-
-  .btn:where(:hover, :focus) {
-    color: #fff;
-  }
 
 /* Footer styling */
 .footer {
@@ -866,7 +780,7 @@ h1 {
 }
 
 .checkout-button {
-  width: 100%;
+  width: 50%;
   padding: 10px 20px;
   background-color: #03d2b8;
   color: white;

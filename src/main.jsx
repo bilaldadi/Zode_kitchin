@@ -8,6 +8,7 @@ import { Snack } from './components/Snack.jsx';
 import {Cart} from './components/Cart.jsx';
 import {CartProvider} from "./context/CartContext.js.jsx";
 import './index.css'
+import { Account } from './components/Account.jsx';
 
 
 
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
             { path: "/", element: <Welcome /> },
             { path: "beverages", element: <Beverages /> },
             { path: "snacks", element: <Snack /> },
+            { path: "account", element: <Account /> },
             { path: "cart", element: <Cart /> },
         ],
     },
