@@ -22,15 +22,15 @@ export function Welcome(){
                 <div >
                     <Link to='/beverages' style={{textDecoration: 'none'}}> <Card1/> </Link>
                 </div>
-                {/* <div >
+                <div >
                     <Link to='/snacks' style={{textDecoration: 'none'}}> <Card2/> </Link>
-                </div> */}
+                </div>
                 <div >
                     <Link to='/beverages' style={{textDecoration: 'none'}}> <Card1/> </Link>
                 </div>
-                {/* <div >
+                <div >
                     <Link to='/snacks' style={{textDecoration: 'none'}}> <Card2/> </Link>
-                </div> */}
+                </div>
             </div>
         </div>
     )

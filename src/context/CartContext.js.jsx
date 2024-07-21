@@ -1,5 +1,5 @@
 // CartContext.js
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useMemo } from 'react';
 
 export const CartContext = createContext();
 
@@ -36,8 +36,12 @@ export function CartProvider({ children }) {
         );
     };
 
+    const totalItems = useMemo(() => {
+        return cartItems.reduce((total, item) => total + item.quantity, 0);
+    }, [cartItems]);
+
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, updateQuantity, removeFromCart }}>
+        <CartContext.Provider value={{ cartItems, addToCart, updateQuantity, removeFromCart, totalItems }}>
             {children}
         </CartContext.Provider>
     );

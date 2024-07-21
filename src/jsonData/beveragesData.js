@@ -5,7 +5,7 @@ const beveragesData = {
       name: "Coca-Cola",
       img_url: "https://i.ytimg.com/vi/vHhaO56KmE4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAnuIqHWN-Q7Dr-czEux6-Jsw39IA",
       description: "A classic soda beverage.",
-      price: 1.50,
+      price: 2.50,
       available: true,
       quantity: 2,
       preferences: [

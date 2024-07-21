@@ -3,9 +3,9 @@ import beveragesData from "../jsonData/beveragesData";
 import { Search } from "./Search";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { CartContext } from '../context/CartContext.js.jsx'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { CartContext } from '../context/CartContext.js.jsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 export function Beverages() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -21,18 +21,26 @@ export function Beverages() {
     }, []);
 
     const handlePreferenceSelect = (beverageId, preference) => {
-        setSelectedPreferences((prevPreferences) => ({
-            ...prevPreferences,
-            [beverageId]: preference,
-        }));
+        setSelectedPreferences((prevPreferences) => {
+            const currentPreferences = prevPreferences[beverageId] || [];
+            const isSelected = currentPreferences.includes(preference);
+            return {
+                ...prevPreferences,
+                [beverageId]: isSelected
+                    ? currentPreferences.filter((item) => item !== preference)
+                    : [...currentPreferences, preference],
+            };
+        });
     };
 
     const handleAddToCart = (beverage) => {
-        const preference = selectedPreferences[beverage.id];
-        if (preference) {
-            addToCart({ ...beverage, preference });
+        const preferences = selectedPreferences[beverage.id];
+        if (preferences && preferences.length > 0) {
+            preferences.forEach(preference => {
+                addToCart({ ...beverage, preference });
+            });
         } else {
-            alert("Please select a preference.");
+            alert("Please select at least one preference.");
         }
     };
 
@@ -59,7 +67,7 @@ export function Beverages() {
                                         {beverage.preferences.map((preference, index) => (
                                             <li className="item-list" key={index}>
                                                 <button
-                                                    className={`item-list-button ${selectedPreferences[beverage.id] === preference ? 'selected' : ''}`}
+                                                    className={`item-list-button ${(selectedPreferences[beverage.id] || []).includes(preference) ? 'selected' : ''}`}
                                                     onClick={() => handlePreferenceSelect(beverage.id, preference)}
                                                 >
                                                     {preference}
@@ -75,7 +83,7 @@ export function Beverages() {
                                 <span>SAR {beverage.price}</span>
                             </div>
                             <button className="btn" onClick={() => handleAddToCart(beverage)}>
-                                <FontAwesomeIcon icon={faCartShopping}/>
+                                <FontAwesomeIcon icon={faCartShopping} />
                                 Add to order
                             </button>
                         </div>

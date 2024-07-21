@@ -2,7 +2,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 0;
   text-align: center;
 }
 
@@ -172,27 +172,19 @@ body.no-scroll {
 .cardsContainer {
   display: flex;
   justify-content: center;
-  
+  gap: 2rem;
   flex-wrap: wrap;
   margin-top: 5rem;
   padding: 1rem;
 }
 
-
-
 @media (max-width: 768px) {
-
   .cardsContainer {
-    justify-content: space-around; /* Center the two cards within the container */
+    margin-top: 2rem;
+    gap: 0.75rem;
   }
-
-.cardsContainer .card {
-  flex: 1 1 45%; /* Adjust the flex-basis to roughly 50% minus the gap for two cards per row */
-  max-width: 40%; /* Ensure the max width does not exceed 50% */
-  box-sizing: border-box; /* Ensure padding/margin does not affect the width */
+ 
 }
-}
-
 
 /*#region*/
 .card {
@@ -205,6 +197,7 @@ body.no-scroll {
   overflow: hidden; /* Ensure the image doesn't overflow the card */
   border-radius: 1.2em; /* Added border-radius directly to the card for smooth edges */
 }
+
 
 .card:hover {
   transform: translateY(-20px);
@@ -228,7 +221,7 @@ body.no-scroll {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #01d0b7, #2e1065);
+  background: linear-gradient(45deg, #01d0b7, #FFFFF7);
   filter: blur(25px);
 }
 
@@ -252,6 +245,14 @@ body.no-scroll {
   height: 100%;
 }
 
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 2rem;
+    width: 155px;
+    height: 155px;
+  }
+}
+
 .card .content {
   position: relative;
   z-index: 10;
@@ -272,7 +273,10 @@ body.no-scroll {
   font-size: 1.5em;
   color: black;
   z-index: 11;
-  transition: color 0.5s;
+  transition: all 0.5s;
+  border: 2px solid black;
+  padding: 3px;
+  border-radius: 5px;
 }
 
 .card .content img {
@@ -289,6 +293,25 @@ body.no-scroll {
 
 .card:hover .content .text {
   color: #01d0b7; /* Change text color on hover */
+  border: 2px solid #01d0b7;
+}
+
+@media (max-width: 768px) {
+
+  .card .content img {
+    width: 143px;
+    height: 143px;
+    object-fit: cover;
+    border-radius: 1em;
+    transition: filter 0.5s;
+}
+
+  .card .content .text {
+    font-size: 1.5rem;
+    border: 1px solid black;
+    padding: 1px;
+    border-radius: 5px;
+  }
 }
 
 
@@ -303,8 +326,16 @@ body.no-scroll {
   color: #fff;
   transition: 0.5s;
   cursor: pointer;
-   overflow: hidden;/* Ensure the image doesn't overflow the card */
+  overflow: hidden;/* Ensure the image doesn't overflow the card */
   border-radius: 1.2em; /* Added border-radius directly to the card for smooth edges */
+}
+
+@media (max-width: 768px) {
+  .card2 {
+    margin-bottom: 2rem;
+    width: 155px;
+    height: 155px;
+  }
 }
 
 .card2:hover {
@@ -373,7 +404,10 @@ body.no-scroll {
   font-size: 1.5em;
   color: black;
   z-index: 11;
-  transition: color 0.5s;
+  transition: all 0.5s;
+  border: 2px solid black;
+  padding: 3px;
+  border-radius: 5px;
 }
 
 .card2 .content img {
@@ -390,6 +424,25 @@ body.no-scroll {
 
 .card2:hover .content .text {
   color: #01d0b7; /* Change text color on hover */
+  border: 2px solid #01d0b7;
+}
+
+@media (max-width: 768px) {
+
+  .card2 .content img {
+    width: 143px;
+    height: 143px;
+    object-fit: cover;
+    border-radius: 1em;
+    transition: filter 0.5s;
+}
+
+  .card2 .content .text {
+    font-size: 1.7em;
+    border: 1px solid black;
+    padding: 1px;
+    border-radius: 5px;
+  }
 }
 
 
@@ -416,20 +469,18 @@ body.no-scroll {
     --bg-linear: linear-gradient(0deg, var(--primary) 50%, var(--light) 125%);
 
     position: relative;
-
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-
     padding: 1rem;
     width: 14rem;
     background: rgba(255, 255, 255, 0.21);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-
     border-radius: 1rem;
   }
+
 
   .image_container {
     overflow:hidden;
@@ -450,9 +501,7 @@ body.no-scroll {
 
   .title {
     overflow: clip;
-
     width: 100%;
-
     font-size: 1rem;
     font-weight: 600;
     color: var(--light);
@@ -462,6 +511,7 @@ body.no-scroll {
   }
 
   .product_description{
+    margin: 0;
     font-size: 12px;
   }
 
@@ -505,7 +555,7 @@ body.no-scroll {
     width: 5rem;
   }
 
-  .item-list-button:focus {
+  .item-list-button.selected {
     background-color: var(--primary);
     box-shadow: inset 0px 1px 4px var(--primary-shadow);
   }
@@ -527,6 +577,21 @@ body.no-scroll {
     width: 1rem;
   }
 
+@media (max-width: 768px) {
+  .bcard{
+    width: 17rem;
+  }
+  .title{
+    font-size: 1.5rem;
+  }
+  .product_description{
+    font-size: 1rem;
+  }
+  .size{
+    font-size: 1rem;
+  }
+}
+
   .search_erea{
     display: flex;
     justify-content: center;
@@ -534,10 +599,9 @@ body.no-scroll {
     padding-bottom: 40px;
   }
 
-
   .searchBox {
     display: flex;
-    width: clamp(200px, 50vw, 500px);
+    width: clamp(500px, 50vw, 500px);
     align-items: center;
     justify-content: space-between;
     gap: clamp(0.5rem, 1vw, 1rem);
@@ -547,17 +611,19 @@ body.no-scroll {
   }
 
   .searchButton {
+    background: none;
+    font-size: 1.5rem;
     color: white;
-    position: absolute;
-    right: 8px;
-    width: 50px;
-    height: 50px;
+    margin-right: 0.35rem;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: var(--gradient-2, linear-gradient(90deg, #2AF598 0%, #009EFD 100%));
+    /*background: var(--gradient-2, linear-gradient(90deg, #2AF598 0%, #009EFD 100%));*/
     border: 0;
     display: inline-block;
     transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
   }
+
   /*hover effect*/
   button:hover {
     color: #fff;
@@ -577,28 +643,28 @@ body.no-scroll {
     outline: none;
     color: white;
     font-size: 15px;
-    padding: 24px 46px 24px 26px;
+    padding: 1.2rem;
   }
 
-
   .btn{
-  display: flex;
-  width: 155.663px;
-  height: 32px;
-  padding: 5.616px 28.082px;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 3.259px;
-  border-radius: 27.159px;
-  background: linear-gradient(90deg, #6100D6 0%, #03D1B8 100%), var(--Neutral-Colour-Neutral-Colour, #FFF);
-  border: none;
-  transition: all 0.3s ease-in-out;
+    display: flex;
+    width: 155.663px;
+    height: 32px;
+    padding: 5.616px 28.082px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 3.259px;
+    border-radius: 27.159px;
+    background: linear-gradient(90deg, #6100D6 0%, #03D1B8 100%), var(--Neutral-Colour-Neutral-Colour, #FFF);
+    border: none;
+    font-size: 0.85rem;
+    color: whitesmoke;
+    transition: all 0.3s ease-in-out;
   }
 
 
 /* Footer styling */
 .footer {
-  width: 100%;
   margin-top: 10rem;
   padding: 0.5rem 1rem;
   display: inline-flex;
@@ -607,6 +673,7 @@ body.no-scroll {
   border: 1px solid whitesmoke;
   border-radius: 45px;
 }
+
 
 .footer p {
   font-size: clamp(0.875rem, 1vw + 0.5rem, 1rem); /* Responsive font size using clamp */
@@ -633,6 +700,10 @@ body.no-scroll {
   .footer {
     flex-direction: column;
     align-items: center;
+    margin-top:1rem;
+    margin-bottom: 2rem;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
   }
 
   .social-container .icon {
@@ -646,8 +717,11 @@ body.no-scroll {
 @media (max-width: 480px) {
   .footer {
     padding: 0.5rem;
-    margin-top: 5rem;
+    margin-top:2rem;
+    margin-bottom: 3rem;
     border-radius: 30px;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
   }
 
   .social-container .icon {
@@ -661,12 +735,19 @@ body.no-scroll {
 /* Cart Css */
 
 .cart{
-  padding-top: 7rem;
+  padding-top: 5rem;
+}
+
+@media (max-width: 768px) {
+  .cart {
+    padding: 3rem 2rem 0 2rem;
+
+  }
 }
 
 .cart-page-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 20px;
   gap: 20px; /* Space between the two containers */
 }
@@ -714,6 +795,11 @@ h1 {
 
 .item-details {
   flex: 1;
+  /* display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row; */
 }
 
 .item-name {
@@ -844,6 +930,87 @@ h1 {
   .cart-container, .user-details-container {
     width: 100%;
   }
+}
+
+.mobile-nav{
+  display: none;
+}
+
+@media (max-width: 780px) {
+  .Mobile-nav-container{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    background: rgba(255, 255, 255, 0.21);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  .mobile-nav{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .mobile-nav-item{
+    font-size: 1.2rem;
+    color: whitesmoke;
+  }
+
+  .cart-nav{
+    position: relative;
+    bottom: 18px;
+  }
+
+  .cart-bg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #03d2b8;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .m-cart{
+    color: whitesmoke;
+    /*margin-bottom: 20px;*/
+    font-size: 1.2rem;
+
+  }
+
+  .cart-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: white;
+    border-radius: 50%;
+    padding: 1px 8px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Optionally add some animation */
+@keyframes pop {
+    0% {
+        transform: scale(0.8);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.cart-count {
+    animation: pop 0.3s ease;
+}
 }
 
 

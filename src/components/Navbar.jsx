@@ -28,7 +28,7 @@ const Navbar = () => {
                 <div className="navbar" data-aos="fade-down" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="800">
                     <div className="menu">
 
-                    <Link to='/'>
+                    <Link to='/' style={{textDecoration: 'none'}}>
                         <div className="menu-item"> <img src="https://static.wixstatic.com/shapes/cad8ae_c0e3627a6c7145c9a85dcb4b3c00484b.svg" alt="Logo" style={{height: '40px'}}/></div>
                     </Link>
 
