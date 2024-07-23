@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faMagnifyingGlass, faCartShopping, faBowlFood, faMugHot } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faMagnifyingGlass, faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import { CartContext } from '../context/CartContext.js.jsx';
 
@@ -18,8 +18,12 @@ export function MobileNav() {
                     <div className="mobile-nav-item"><FontAwesomeIcon icon={faMagnifyingGlass} /></div>
                 </Link>
 
+                <Link to='/account' style={{textDecoration: 'none'}}>
+                        <div className="menu-item"><FontAwesomeIcon icon={faUser} /></div>
+                </Link>
+
                 <Link to='/cart' style={{ textDecoration: 'none' }}>
-                    <div className="cart-nav">
+                    <div className="cart-nav mobile-nav-item">
                         <div className="cart-bg">
                             <div className="m-cart">
                                 <FontAwesomeIcon icon={faCartShopping} />
@@ -29,13 +33,7 @@ export function MobileNav() {
                     </div>
                 </Link>
 
-                <Link to='/snacks' style={{ textDecoration: 'none' }}>
-                    <div className="mobile-nav-item"><FontAwesomeIcon icon={faBowlFood} /></div>
-                </Link>
-
-                <Link to='/beverages' style={{ textDecoration: 'none' }}>
-                    <div className="mobile-nav-item"><FontAwesomeIcon icon={faMugHot} /></div>
-                </Link>
+                
             </div>
         </div>
     );

@@ -6,6 +6,7 @@ import 'aos/dist/aos.css';
 import { CartContext } from '../context/CartContext.js.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { RightPointer } from "./Pointer.jsx";
 
 export function Beverages() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -43,7 +44,10 @@ export function Beverages() {
             alert("Please select at least one preference.");
         }
     };
-
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+    
     return (
         <div className="elements-container" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="300">
             <h1>Beverages</h1>
@@ -90,6 +94,7 @@ export function Beverages() {
                     </div>
                 ))}
             </div>
+            <RightPointer />
         </div>
     );
 }

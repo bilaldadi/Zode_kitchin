@@ -78,6 +78,7 @@
   .navbar-mobile{
     display: flex;
     justify-content:space-between;
+    gap: 5rem;
     align-items: center;
     flex-direction: row;
     width: 90%;
@@ -268,15 +269,14 @@ body.no-scroll {
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 80%;
   transform: translate(-50%, -50%);
   font-weight: 500;
   font-size: 1.5em;
-  color: black;
+  color: whitesmoke;
   z-index: 11;
   transition: all 0.5s;
-  border: 2px solid black;
   padding: 3px;
-  border-radius: 5px;
 }
 
 .card .content img {
@@ -285,15 +285,13 @@ body.no-scroll {
   object-fit:cover;
   border-radius: 1em;
   transition: filter 0.5s;
+  filter: brightness(0.555);
 }
 
-.card:hover .content img {
-  filter: brightness(0.7);
-}
 
 .card:hover .content .text {
-  color: #01d0b7; /* Change text color on hover */
-  border: 2px solid #01d0b7;
+  color: #01d0b7;
+  
 }
 
 @media (max-width: 768px) {
@@ -307,10 +305,7 @@ body.no-scroll {
 }
 
   .card .content .text {
-    font-size: 1.5rem;
-    border: 1px solid black;
-    padding: 1px;
-    border-radius: 5px;
+    font-size: 1.3rem;
   }
 }
 
@@ -328,6 +323,8 @@ body.no-scroll {
   cursor: pointer;
   overflow: hidden;/* Ensure the image doesn't overflow the card */
   border-radius: 1.2em; /* Added border-radius directly to the card for smooth edges */
+  
+
 }
 
 @media (max-width: 768px) {
@@ -399,15 +396,15 @@ body.no-scroll {
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 80%;
   transform: translate(-50%, -50%);
   font-weight: 500;
   font-size: 1.5em;
-  color: black;
+  color: whitesmoke;
   z-index: 11;
   transition: all 0.5s;
-  border: 2px solid black;
   padding: 3px;
-  border-radius: 5px;
+  
 }
 
 .card2 .content img {
@@ -416,15 +413,11 @@ body.no-scroll {
   object-fit:cover;
   border-radius: 1em;
   transition: filter 0.5s;
-}
-
-.card2:hover .content img {
-  filter: brightness(0.7);
+  filter: brightness(0.6);
 }
 
 .card2:hover .content .text {
-  color: #01d0b7; /* Change text color on hover */
-  border: 2px solid #01d0b7;
+  color: #01d0b7;
 }
 
 @media (max-width: 768px) {
@@ -438,13 +431,9 @@ body.no-scroll {
 }
 
   .card2 .content .text {
-    font-size: 1.7em;
-    border: 1px solid black;
-    padding: 1px;
-    border-radius: 5px;
+    font-size: 1.3rem;
   }
 }
-
 
 
 .elements-container{
@@ -601,7 +590,7 @@ body.no-scroll {
 
   .searchBox {
     display: flex;
-    width: clamp(500px, 50vw, 500px);
+    width: clamp(20rem, 50vw, 50rem);
     align-items: center;
     justify-content: space-between;
     gap: clamp(0.5rem, 1vw, 1rem);
@@ -661,6 +650,58 @@ body.no-scroll {
     color: whitesmoke;
     transition: all 0.3s ease-in-out;
   }
+
+
+  .account-page-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.21);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 1rem;
+    margin: 5rem auto 1rem auto;  /* this combines margin-top: 5rem; and the horizontal centering */
+    width: 48%;
+}
+
+.login-btn-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 5px;
+
+}
+
+.login-btn{
+  display: flex;
+  width: 155.663px;
+  height: 32px;
+  padding: 5.616px 28.082px;
+  justify-content: center;
+  align-items: center;
+  gap: 3.259px;
+  border-radius: 27.159px;
+  background: linear-gradient(90deg, #6100D6 0%, #03D1B8 100%), var(--Neutral-Colour-Neutral-Colour, #FFF);
+  border: none;
+  font-size: 0.85rem;
+  color: whitesmoke;
+  transition: all 0.3s ease-in-out;
+
+}
+
+.account-page-container h2{
+  font-size: clamp(2rem, 1vw + 0.5rem, 5rem);
+}
+
+@media (max-width: 768px) {
+  .account-page-container {
+    width: 80%;
+  }
+}
+  
 
 
 /* Footer styling */
@@ -817,12 +858,15 @@ h1 {
 }
 
 .quantity-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #03d2b8;
   color: white;
   border: none;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 2rem;
+  height: 2rem;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -866,7 +910,7 @@ h1 {
 }
 
 .checkout-button {
-  width: 50%;
+  width: 80%;
   padding: 10px 20px;
   background-color: #03d2b8;
   color: white;
@@ -895,6 +939,7 @@ h1 {
 }
 
 .form-group label {
+  display: flex;
   font-size: 1rem;
   margin-bottom: 5px;
 
@@ -949,6 +994,7 @@ h1 {
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
     border: 1px solid rgba(255, 255, 255, 0.18);
+    z-index: 1002;
   }
   .mobile-nav{
     display: flex;
@@ -963,17 +1009,6 @@ h1 {
 
   .cart-nav{
     position: relative;
-    bottom: 18px;
-  }
-
-  .cart-bg{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #03d2b8;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
   }
 
   .m-cart{
@@ -983,18 +1018,16 @@ h1 {
 
   }
 
+
   .cart-count {
     position: absolute;
     top: -5px;
     right: -10px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background-color: #03d2b8;
     color: white;
     border-radius: 50%;
-    padding: 1px 8px;
-    font-size: 12px;
+    padding: 0.5px 5px;
+    font-size: 10px;
     font-weight: bold;
 }
 
@@ -1012,6 +1045,49 @@ h1 {
     animation: pop 0.3s ease;
 }
 }
+
+
+.d-cart-count {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 1rem;
+  right: 1.5rem;
+  background-color: #03d2b8;
+  color: white;
+  border-radius: 50%;
+  width: 1.2rem;
+  height: 1.2rem;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.pointer-container{
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .pointer-container {
+    position: fixed;
+    right: 0;
+    top: 150px;
+    width: 5rem; 
+    height: 5rem; 
+     
+    
+  }
+
+  .right-pointer {
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    pointer-events: auto; /* Ensures the pointer can be clicked */
+  }
+}
+
 
 
 

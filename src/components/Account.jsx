@@ -1,11 +1,23 @@
+import axios from "axios";
+
 export function Account() {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
+      
     return (
-        <div className="cart-page-container">
-        <h2>User Details</h2>
+        <div>
+        <div className="account-page-container">
+        <h2>Login</h2>
         <form className="user-form">
             <div className="form-group">
-                <label htmlFor="name">Name:</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name"/>
+                <label htmlFor="name">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your Email:"/>
+            </div>
+            <div className="form-group">
+                <label htmlFor="phone">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password:"/>
             </div>
             <div className="form-group">
                 <label htmlFor="office">Office Number:</label>
@@ -25,11 +37,12 @@ export function Account() {
                     <option value="12">12 - test</option>
                 </select>
             </div>
-            <div className="form-group">
-                <label htmlFor="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number"/>
+            <div className="login-btn-container" >
+                <button className="login-btn">Login</button>
+                <button className="login-btn">Guest</button>
             </div>
         </form>
+    </div>
     </div>
     );
 }

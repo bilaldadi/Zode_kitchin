@@ -1,14 +1,19 @@
 import {useEffect} from "react";
-import {Card1 , Card2} from './card1'
+import {Card1 , Card2, Card3, Card4} from './card1'
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 export function Welcome(){
-
+    
     useEffect(() => {
         AOS.init();
     }, [])
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+    
 
     return (
         <div className="main-welcome-container">
@@ -26,10 +31,10 @@ export function Welcome(){
                     <Link to='/snacks' style={{textDecoration: 'none'}}> <Card2/> </Link>
                 </div>
                 <div >
-                    <Link to='/beverages' style={{textDecoration: 'none'}}> <Card1/> </Link>
+                    <Link to='/beverages' style={{textDecoration: 'none'}}> <Card3/> </Link>
                 </div>
                 <div >
-                    <Link to='/snacks' style={{textDecoration: 'none'}}> <Card2/> </Link>
+                    <Link to='/snacks' style={{textDecoration: 'none'}}> <Card4/> </Link>
                 </div>
             </div>
         </div>

@@ -21,6 +21,12 @@ export function Snack() {
         addToCart({ ...snack });
     };
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+    
+
+
     return (
         <div className="elements-container" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="300">
             <h1>Snacks</h1>

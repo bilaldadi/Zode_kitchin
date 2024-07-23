@@ -20,6 +20,11 @@ export function Cart() {
         removeFromCart(itemId, preference);
     };
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+    
+
     return (
         <div className="cart" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="300">
             <div className="cart-page-container">
