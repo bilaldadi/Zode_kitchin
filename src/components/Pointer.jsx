@@ -6,3 +6,12 @@ export function RightPointer() {
         </div>
 );
 }
+
+export function LeftPointer() {
+    return (
+
+        <div className="pointer-container">
+            <div className="left-pointer">&#8678;</div>
+        </div>
+);
+}
