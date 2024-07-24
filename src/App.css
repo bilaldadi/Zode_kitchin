@@ -460,9 +460,10 @@ body.no-scroll {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem;
     padding: 1rem;
-    width: 14rem;
+    width: 15rem;
+    height: 22rem;
     background: rgba(255, 255, 255, 0.21);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(20px);
@@ -635,22 +636,55 @@ body.no-scroll {
     padding: 1.2rem;
   }
 
-  .btn{
-    display: flex;
-    width: 155.663px;
-    height: 32px;
-    padding: 5.616px 28.082px;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 3.259px;
-    border-radius: 27.159px;
-    background: linear-gradient(90deg, #6100D6 0%, #03D1B8 100%), var(--Neutral-Colour-Neutral-Colour, #FFF);
-    border: none;
-    font-size: 0.85rem;
-    color: whitesmoke;
-    transition: all 0.3s ease-in-out;
-  }
+      .btn {
+        display: flex;
+        width: 155.663px;
+        height: 32px;
+        padding: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        gap: 3.259px;
+        border-radius: 27.159px;
+        background: linear-gradient(90deg, #6100D6 0%, #03D1B8 100%), var(--Neutral-Colour-Neutral-Colour, #FFF);
+        border: none;
+        font-size: 0.85rem;
+        color: whitesmoke;
+        transition: all 0.3s ease-in-out;
+        position: relative;
+        overflow: hidden;
+    }
 
+    .btn .cart-icon {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .btn.added .cart-icon {
+        transform: translateX(100%);
+    }
+
+    .btn .text {
+        transition: opacity 0.3s ease-in-out;
+    }
+
+   
+
+    @keyframes slideIn {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideOut {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(100%);
+        }
+    }
 
   .account-page-container {
     display: flex;
@@ -821,6 +855,19 @@ h1 {
   text-align: center;
   margin-bottom: 20px;
   font-weight: 400;
+}
+
+.cart-heading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+.cart-heading h2{
+  margin: 0;
+  padding: 0;
 }
 
 .cart-items {

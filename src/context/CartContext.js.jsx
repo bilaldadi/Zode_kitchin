@@ -5,6 +5,7 @@ export const CartContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 export function CartProvider({ children }) {
+    
     const [cartItems, setCartItems] = useState([]);
 
     const addToCart = (item) => {

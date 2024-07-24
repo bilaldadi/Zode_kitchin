@@ -13,7 +13,7 @@ export function Login(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {setIsLoggedIn , isLoggedIn} = useContext(AuthContext);
-    const [isLoading, setIsLoading] = useState(true); // Loading state
+    const [isLoading, setIsLoading] = useState(true);
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate()
     
@@ -23,7 +23,6 @@ export function Login(){
     
         try {
           const response = await axios.post(`${ApiUrl}/auth/login`, {
-            
             email,
             password,
             // withCredentials: true,

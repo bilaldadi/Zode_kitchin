@@ -11,6 +11,7 @@ import { RightPointer,LeftPointer } from "./Pointer.jsx";
 export function Beverages() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedPreferences, setSelectedPreferences] = useState({});
+    const [addedItems, setAddedItems] = useState([]);
     const { addToCart } = useContext(CartContext);
 
     const filteredBeverages = beveragesData.beverages.filter((beverage) =>
@@ -37,13 +38,21 @@ export function Beverages() {
     const handleAddToCart = (beverage) => {
         const preferences = selectedPreferences[beverage.id];
         if (preferences && preferences.length > 0) {
-            preferences.forEach(preference => {
-                addToCart({ ...beverage, preference });
-            });
+          preferences.forEach(preference => {
+            addToCart({ ...beverage, preference });
+          });
         } else {
-            alert("Please select at least one preference.");
+          addToCart({ ...beverage });
         }
-    };
+    
+        setAddedItems((prevAddedItems) => [...prevAddedItems, beverage.id]);
+        setTimeout(() => {
+          setAddedItems((prevAddedItems) =>
+            prevAddedItems.filter((id) => id !== beverage.id)
+          );
+        }, 1000);
+      };
+
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
@@ -86,10 +95,14 @@ export function Beverages() {
                             <div className="price">
                                 <span>SAR {beverage.price}</span>
                             </div>
-                            <button className="btn" onClick={() => handleAddToCart(beverage)}>
-                                <FontAwesomeIcon icon={faCartShopping} />
-                                Add to order
-                            </button>
+                            <button
+                className={`btn ${addedItems.includes(beverage.id) ? 'added' : ''}`}
+                onClick={() => handleAddToCart(beverage)}
+                disabled={addedItems.includes(beverage.id)}
+              >
+                <FontAwesomeIcon icon={faCartShopping} className="cart-icon" />
+                <span className="text">{addedItems.includes(beverage.id) ? "Added" : "Add to order"}</span>
+              </button>
                         </div>
                     </div>
                 ))}

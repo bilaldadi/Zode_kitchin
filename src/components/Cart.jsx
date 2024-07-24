@@ -3,10 +3,12 @@ import { CartContext } from '../context/CartContext.js.jsx';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faTrash,faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import {useNavigate} from 'react-router-dom'
 
 export function Cart() {
-    const { cartItems, updateQuantity, removeFromCart } = useContext(CartContext);
+    const { cartItems, updateQuantity, removeFromCart, totalItems } = useContext(CartContext);
+    const navigate = useNavigate()
 
     useEffect(() => {
         AOS.init();
@@ -24,13 +26,34 @@ export function Cart() {
         window.scrollTo(0, 0)
       }, [])
     
+      if(totalItems === 0){
+        return (
+          <div className="cart" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="300">
+              <div className="cart-page-container">
+                  <div className="cart-container">
+                    <div className="cart-heading">
+                        <h2>My Cart</h2>
+                        <FontAwesomeIcon icon={faCartShopping} style={{fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.5rem)'}} />
+                    </div>
+                    <div className="cart-items">
+                          <p>Your cart is empty</p>
+                          <button className="checkout-button" onClick = {() => navigate('/')} >Make Order Now</button>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      );
+      }
 
     return (
         <div className="cart" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="300">
             <div className="cart-page-container">
                 
                 <div className="cart-container">
-                    <h2>My Cart</h2>
+                <div className="cart-heading">
+                        <h2>My Cart</h2>
+                        <FontAwesomeIcon icon={faCartShopping} style={{fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.5rem)'}} />
+                    </div>
                     <div className="cart-items">
                         {cartItems.map((item, index) => (
                             <div key={index} className="cart-item">
