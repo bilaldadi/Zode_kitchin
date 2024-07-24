@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from 'react';
-import { Login } from './Login';
 import axios from "axios";
 import ApiUrl from './MainUrl';
 import { AuthContext } from '../context/AuthContext';
@@ -41,7 +40,7 @@ export function Account() {
     }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>; // Show loading indicator while checking token
+    return <div>Loading...</div>;
   }
 
   if (isLoggedIn) {

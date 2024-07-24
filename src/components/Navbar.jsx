@@ -3,7 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping,faUser,faBowlFood,faMugHot } from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping,faUser } from '@fortawesome/free-solid-svg-icons'
 import { CartContext } from '../context/CartContext.js.jsx';
 
 

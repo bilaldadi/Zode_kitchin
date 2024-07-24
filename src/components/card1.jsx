@@ -1,7 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMugSaucer,faCookieBite } from '@fortawesome/free-solid-svg-icons'
-
-
 export function Card1() {
     return (
         <div className="card">

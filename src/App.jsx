@@ -1,14 +1,14 @@
-import {React, useState, useEffect, useContext  } from 'react'
+import { useState, useEffect, useContext  } from 'react'
 import './App.css'
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import {MobileNav} from "./components/MobileNav.jsx";
-import {Login} from "./components/Login.jsx";
 import {useNavigate} from 'react-router-dom';
 import { AuthContext } from './context/AuthContext.jsx';
 
 
 
+// eslint-disable-next-line react/prop-types
 function App({ children }) {
 
   const {isLoggedIn} = useContext(AuthContext);

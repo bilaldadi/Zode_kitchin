@@ -1,8 +1,9 @@
-import React, { createContext, useState, useEffect } from 'react';
-import { isExpired, decodeToken } from "react-jwt";
+import  { createContext, useState, useEffect } from 'react';
+import { isExpired } from "react-jwt";
 
 export const AuthContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 

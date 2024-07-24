@@ -1,8 +1,8 @@
-import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 
+// eslint-disable-next-line react/prop-types
 export function Search({ searchTerm, setSearchTerm }) {
   return (
     <div className="search_erea">

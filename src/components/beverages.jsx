@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
-import beveragesData from "../jsonData/beveragesData";
-import { Search } from "./Search";
+import beveragesData from "../jsonData/beveragesData.js";
+import { Search } from "./Search.jsx";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { CartContext } from '../context/CartContext.js.jsx';
