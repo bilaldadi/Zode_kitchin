@@ -7,9 +7,10 @@ import {Beverages} from "./components/Beverages.jsx";
 import { Snack } from './components/Snack.jsx';
 import {Cart} from './components/Cart.jsx';
 import {CartProvider} from "./context/CartContext.js.jsx";
+import { AuthProvider } from './context/AuthContext.jsx';
 import './index.css'
 import { Account } from './components/Account.jsx';
-
+import { Login } from './components/Login.jsx';
 
 
 const MainLayout = () => (
@@ -28,14 +29,17 @@ const router = createBrowserRouter([
             { path: "snacks", element: <Snack /> },
             { path: "account", element: <Account /> },
             { path: "cart", element: <Cart /> },
+            { path: "login", element: <Login /> },
         ],
     },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <CartProvider>
-            <RouterProvider router={router} />
-        </CartProvider>
+        <AuthProvider>
+            <CartProvider>
+                <RouterProvider router={router} />
+            </CartProvider>
+        </AuthProvider>
     </React.StrictMode>
 );

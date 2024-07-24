@@ -52,7 +52,15 @@ const Navbar = () => {
                     </Link>
 
                     <Link to='/' style={{textDecoration: 'none'}}>    
-                        <div className="menu-item">About</div>
+                        <div className="menu-item">Search</div>
+                    </Link>
+
+                    <Link to='/beverages' style={{textDecoration: 'none'}}>
+                        <div className="menu-item"> Beverages</div>
+                    </Link>
+                        
+                    <Link to='/snacks' style={{textDecoration: 'none'}}>
+                        <div className="menu-item">Snacks</div>
                     </Link>
 
                     <Link to='/beverages' style={{textDecoration: 'none'}}>
