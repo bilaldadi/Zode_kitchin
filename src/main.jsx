@@ -11,6 +11,8 @@ import { AuthProvider } from './context/AuthContext.jsx';
 import './index.css'
 import { Account } from './components/Account.jsx';
 import { Login } from './components/Login.jsx';
+import { Fruits } from './components/Fruits.jsx';
+import { Desserts } from './components/Desserts.jsx';
 
 
 const MainLayout = () => (
@@ -27,6 +29,8 @@ const router = createBrowserRouter([
             { path: "/", element: <Welcome /> },
             { path: "beverages", element: <Beverages /> },
             { path: "snacks", element: <Snack /> },
+            { path: "fruits", element: <Fruits /> },
+            { path: "desserts", element: <Desserts /> },
             { path: "account", element: <Account /> },
             { path: "cart", element: <Cart /> },
             { path: "login", element: <Login /> },

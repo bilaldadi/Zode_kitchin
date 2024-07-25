@@ -56,19 +56,19 @@ const Navbar = () => {
                     </Link>
 
                     <Link to='/beverages' style={{textDecoration: 'none'}}>
-                        <div className="menu-item"> Beverages</div>
+                        <div className="menu-item">Beverages</div>
                     </Link>
                         
                     <Link to='/snacks' style={{textDecoration: 'none'}}>
                         <div className="menu-item">Snacks</div>
                     </Link>
 
-                    <Link to='/beverages' style={{textDecoration: 'none'}}>
-                        <div className="menu-item"> Beverages</div>
+                    <Link to='/fruits' style={{textDecoration: 'none'}}>
+                        <div className="menu-item">Fruits</div>
                     </Link>
                         
-                    <Link to='/snacks' style={{textDecoration: 'none'}}>
-                        <div className="menu-item">Snacks</div>
+                    <Link to='/desserts' style={{textDecoration: 'none'}}>
+                        <div className="menu-item">Desserts</div>
                     </Link>
 
                     <Link to='/account' style={{textDecoration: 'none'}}>
@@ -111,7 +111,7 @@ const Navbar = () => {
                             <span className="menu-item" onClick={toggleMenu}>Home</span>
                         </Link>
                     </div>
-                    <a href="https://www.sellwithzode.sa/" className="menu-item" target="_blank" rel="noopener noreferrer" onClick={toggleMenu}>About</a>
+                    <a href="#" className="menu-item" target="_blank" rel="noopener noreferrer" onClick={toggleMenu}>Search</a>
                     <div className="menu-item">
                         <Link to='/beverages' style={{ textDecoration: 'none' }}>
                             <span className="menu-item" onClick={toggleMenu}>Beverages</span>
@@ -123,8 +123,13 @@ const Navbar = () => {
                         </Link>
                     </div>
                     <div className="menu-item">
-                        <Link to='/cart' style={{ textDecoration: 'none' }}>
-                            <span className="menu-item" onClick={toggleMenu}> <FontAwesomeIcon icon={faCartShopping} /> </span>
+                        <Link to='/fruits' style={{ textDecoration: 'none' }}>
+                            <span className="menu-item" onClick={toggleMenu}>Fruits</span>
+                        </Link>
+                    </div>
+                    <div className="menu-item">
+                        <Link to='/desserts' style={{ textDecoration: 'none' }}>
+                            <span className="menu-item" onClick={toggleMenu}>Desserts</span>
                         </Link>
                     </div>
                     <div className="menu-item">
@@ -134,10 +139,16 @@ const Navbar = () => {
                             </span>
                         </Link>
                     </div>
+                    <div className="menu-item">
+                        <Link to='/cart' style={{ textDecoration: 'none' }}>
+                            <span className="menu-item" onClick={toggleMenu}> <FontAwesomeIcon icon={faCartShopping} /> </span>
+                        </Link>
+                    </div>
+                   
                 </div>
 
             </div>
-        </div>
+            </div>
 
         </div>
     );

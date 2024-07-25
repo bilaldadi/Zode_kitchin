@@ -58,6 +58,9 @@ export function Cart() {
                         {cartItems.map((item, index) => (
                             <div key={index} className="cart-item">
                                 <div className="item-details">
+                                
+                                    <img className="item-image" src={item.img_url} alt={item.name} />
+                               
                                     <p className="item-name">{item.name}</p>
                                     <p className="item-price">SAR {item.price}</p>
                                     <p className="item-preference">Preference: {item.preference}</p>

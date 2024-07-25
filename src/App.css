@@ -878,6 +878,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   padding: 10px 0;
   border-bottom: 1px solid #eee;
   transition: background-color 0.3s ease-in-out;
@@ -886,11 +887,64 @@ h1 {
 
 .item-details {
   flex: 1;
-  /* display: flex;
-  gap: 2rem;
-  justify-content: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
   align-items: center;
-  flex-direction: row; */
+  flex-direction: row;
+}
+
+
+
+.item-image{
+  width: 70px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 1em;
+
+}
+
+@media (max-width: 1128px) {
+  .item-details {
+    flex-direction: column;
+    gap: 0;
+    
+  }
+
+  .item-image{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 1em;
+  }
+
+  .item-name {
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .item-price {
+    font-size: 1rem;
+    color: #888;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .item-quantity {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .item-preference{
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
 }
 
 .item-name {

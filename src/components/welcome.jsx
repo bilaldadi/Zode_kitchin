@@ -31,10 +31,10 @@ export function Welcome(){
                     <Link to='/snacks' style={{textDecoration: 'none'}}> <Card2/> </Link>
                 </div>
                 <div >
-                    <Link to='/beverages' style={{textDecoration: 'none'}}> <Card3/> </Link>
+                    <Link to='/fruits' style={{textDecoration: 'none'}}> <Card3/> </Link>
                 </div>
                 <div >
-                    <Link to='/snacks' style={{textDecoration: 'none'}}> <Card4/> </Link>
+                    <Link to='/desserts' style={{textDecoration: 'none'}}> <Card4/> </Link>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import beveragesData from "../jsonData/beveragesData.js";
+import fruitsData from "../jsonData/fruitsData.js";
 import { Search } from "./Search.jsx";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -8,47 +8,47 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { RightPointer,LeftPointer } from "./Pointer.jsx";
 
-export function Beverages() {
+export function Fruits() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedPreferences, setSelectedPreferences] = useState({});
     const [addedItems, setAddedItems] = useState([]);
     const { addToCart } = useContext(CartContext);
 
-    const filteredBeverages = beveragesData.beverages.filter((beverage) =>
-        beverage.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredFruits = fruitsData.fruits.filter((fruit) =>
+        fruit.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     useEffect(() => {
         AOS.init();
     }, []);
 
-    const handlePreferenceSelect = (beverageId, preference) => {
+    const handlePreferenceSelect = (fruitId, preference) => {
         setSelectedPreferences((prevPreferences) => {
-            const currentPreferences = prevPreferences[beverageId] || [];
+            const currentPreferences = prevPreferences[fruitId] || [];
             const isSelected = currentPreferences.includes(preference);
             return {
                 ...prevPreferences,
-                [beverageId]: isSelected
+                [fruitId]: isSelected
                     ? currentPreferences.filter((item) => item !== preference)
                     : [...currentPreferences, preference],
             };
         });
     };
 
-    const handleAddToCart = (beverage) => {
-        const preferences = selectedPreferences[beverage.id];
+    const handleAddToCart = (fruit) => {
+        const preferences = selectedPreferences[fruit.id];
         if (preferences && preferences.length > 0) {
           preferences.forEach(preference => {
-            addToCart({ ...beverage, preference });
+            addToCart({ ...fruit, preference });
           });
         } else {
-          addToCart({ ...beverage });
+          addToCart({ ...fruit });
         }
     
-        setAddedItems((prevAddedItems) => [...prevAddedItems, beverage.id]);
+        setAddedItems((prevAddedItems) => [...prevAddedItems, fruit.id]);
         setTimeout(() => {
           setAddedItems((prevAddedItems) =>
-            prevAddedItems.filter((id) => id !== beverage.id)
+            prevAddedItems.filter((id) => id !== fruit.id)
           );
         }, 1000);
       };
@@ -59,29 +59,29 @@ export function Beverages() {
       
     return (
         <div className="elements-container" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="300">
-            <h1>Beverages</h1>
+            <h1>Fruits</h1>
             <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
             <div className="bCrad_contanier">
-                {filteredBeverages.map((beverage) => (
-                    <div key={beverage.id} className="bcard">
+                {filteredFruits.map((fruit) => (
+                    <div key={fruit.id} className="bcard">
                         <div className="image_container">
-                            <img src={beverage.img_url} alt="" />
+                            <img src={fruit.img_url} alt="" />
                         </div>
                         <div className="title">
-                            <span>{beverage.name}</span>
+                            <span>{fruit.name}</span>
                         </div>
-                        <p className="product_description">{beverage.description}</p>
+                        <p className="product_description">{fruit.description}</p>
                         <div className="size">
-                            {beverage.preferences && (
+                            {fruit.preferences && (
                                 <>
                                     <span>Preferences</span>
                                     <ul className="list-size">
-                                        {beverage.preferences.map((preference, index) => (
+                                        {fruit.preferences.map((preference, index) => (
                                             <li className="item-list" key={index}>
                                                 <button
-                                                    className={`item-list-button ${(selectedPreferences[beverage.id] || []).includes(preference) ? 'selected' : ''}`}
-                                                    onClick={() => handlePreferenceSelect(beverage.id, preference)}
+                                                    className={`item-list-button ${(selectedPreferences[fruit.id] || []).includes(preference) ? 'selected' : ''}`}
+                                                    onClick={() => handlePreferenceSelect(fruit.id, preference)}
                                                 >
                                                     {preference}
                                                 </button>
@@ -93,15 +93,15 @@ export function Beverages() {
                         </div>
                         <div className="action">
                             <div className="price">
-                                <span>SAR {beverage.price}</span>
+                                <span>SAR {fruit.price}</span>
                             </div>
                             <button
-                className={`btn ${addedItems.includes(beverage.id) ? 'added' : ''}`}
-                onClick={() => handleAddToCart(beverage)}
-                disabled={addedItems.includes(beverage.id)}
+                className={`btn ${addedItems.includes(fruit.id) ? 'added' : ''}`}
+                onClick={() => handleAddToCart(fruit)}
+                disabled={addedItems.includes(fruit.id)}
               >
                 <FontAwesomeIcon icon={faCartShopping} className="cart-icon" />
-                <span className="text">{addedItems.includes(beverage.id) ? "Added" : "Add to order"}</span>
+                <span className="text">{addedItems.includes(fruit.id) ? "Added" : "Add to order"}</span>
               </button>
                         </div>
                     </div>
