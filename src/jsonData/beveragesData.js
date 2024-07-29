@@ -11,7 +11,8 @@ const beveragesData = {
       preferences: [
         "normal",
         "sugar"
-      ]
+      ],
+      status: "Processing ..."
     },
     {
       id: 2,

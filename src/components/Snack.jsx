@@ -178,14 +178,14 @@ export function Snack() {
                 disabled={addedItems.includes(snack.id)}
               >
                 <FontAwesomeIcon icon={faCartShopping} className="cart-icon" />
-                <span className="text">{addedItems.includes(snack.id) ? "Added" : "Add to order"}</span>
+                <span className="text">{addedItems.includes(snack.id) ? "Added" : "Add to Cart"}</span>
               </button>
                         </div>
                     </div>
                 ))}
             </div>
-            <RightPointer />
-            <LeftPointer />
+            {/* <RightPointer />
+            <LeftPointer /> */}
         </div>
     );
 }

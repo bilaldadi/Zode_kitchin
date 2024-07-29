@@ -6,9 +6,6 @@
   text-align: center;
 }
 
-::placeholder{
-  color: whitesmoke;
-}
 
 .Nav-container {
   display: flex;
@@ -37,6 +34,28 @@
   display: flex;
   align-items: center;
   width: 100%;
+}
+
+@media (min-width: 768px) {
+
+.drop-down-menu{
+  display: none;
+}
+
+}
+
+.dropdown:hover .drop-down-menu{
+  display: block;
+  position: absolute;
+  background-color: black;
+  border-radius: 12px;
+  z-index: 1000;
+  padding: 0.6rem;
+}
+
+.drop-down-item{
+  padding: 0.3rem;
+  cursor: pointer;
 }
 
 .navbar .menu-item {
@@ -116,6 +135,9 @@
     cursor: pointer;
     font-size: 32px;
   }
+
+  
+
 }
 
 .close-menu {
@@ -165,7 +187,8 @@ body.no-scroll {
 
 @media (max-width: 768px) {
   .welcome-div {
-    padding: 3rem;
+    margin-top: 5rem;
+    padding: 0;
   }
 
 }
@@ -474,7 +497,6 @@ body.no-scroll {
 
   .image_container {
     overflow:hidden;
-    cursor: pointer;
     position: relative;
     z-index: 5;
     width: 100%;
@@ -538,7 +560,7 @@ body.no-scroll {
     padding: 0.5rem;
     border-radius: 43.75px;
     background: #03D1B8;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     color: black;
     border: none;
     transition: all 0.3s ease-in-out;
@@ -647,11 +669,12 @@ body.no-scroll {
         border-radius: 27.159px;
         background: linear-gradient(90deg, #6100D6 0%, #03D1B8 100%), var(--Neutral-Colour-Neutral-Colour, #FFF);
         border: none;
-        font-size: 0.85rem;
+        font-size: 1rem;
         color: whitesmoke;
         transition: all 0.3s ease-in-out;
         position: relative;
         overflow: hidden;
+        cursor: pointer;
     }
 
     .btn .cart-icon {
@@ -720,7 +743,7 @@ body.no-scroll {
   border-radius: 27.159px;
   background: linear-gradient(90deg, #6100D6 0%, #03D1B8 100%), var(--Neutral-Colour-Neutral-Colour, #FFF);
   border: none;
-  font-size: 0.85rem;
+  font-size: 1.2rem;
   color: whitesmoke;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
@@ -1219,8 +1242,28 @@ h1 {
   padding: 10px 0;
   border-bottom: 1px solid #eee;
   transition: background-color 0.3s ease-in-out;
+  margin-top: 2.5rem;
 }
 
+.customer-order-details h1{
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .customer-order-details{
+    margin-top: 3rem;
+  }
+
+  .customer-order-details h1{
+    font-size:clamp(1.5rem, 2vw + 1rem, 2rem);
+    gap: 1rem;
+  }
+}
+
+.order-h2{
+  font-size: clamp(1.5rem, 2vw + 1rem, 2rem);
+}
 
 .password-wrapper {
   position: relative;
@@ -1240,6 +1283,49 @@ h1 {
   cursor: pointer;
   color: black;
   font-size: 0.9em;
+}
+
+
+.details-table{
+  margin-top: 1rem;
+  background: rgba(255, 255, 255, 0.21);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 26px;
+  padding: 1rem;
+}
+
+.details-table-oreder-details{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.3s ease-in-out;
+  font-size: 1.2rem;
+  gap: 1rem;
+}
+
+.details-table-oreder-details img{
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 1em;
+}
+
+@media (max-width: 768px) {
+  .details-table-oreder-details{
+    font-size: 1rem;
+    gap: 1rem;
+    
+  }
+  .details-table-oreder-details img{
+    width: 60px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 1em;
+  }
 }
 
 

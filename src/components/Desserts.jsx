@@ -101,14 +101,14 @@ export function Desserts() {
                 disabled={addedItems.includes(dessert.id)}
               >
                 <FontAwesomeIcon icon={faCartShopping} className="cart-icon" />
-                <span className="text">{addedItems.includes(dessert.id) ? "Added" : "Add to order"}</span>
+                <span className="text">{addedItems.includes(dessert.id) ? "Added" : "Add to Cart"}</span>
               </button>
                         </div>
                     </div>
                 ))}
             </div>
-            <RightPointer />
-            <LeftPointer />
+            {/* <RightPointer />
+            <LeftPointer /> */}
         </div>
     );
 }

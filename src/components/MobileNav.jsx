@@ -14,7 +14,7 @@ export function MobileNav() {
                     <div className="mobile-nav-item"><FontAwesomeIcon icon={faHouse} /></div>
                 </Link>
 
-                <Link to='/' style={{ textDecoration: 'none' }}>
+                <Link to='/search' style={{ textDecoration: 'none' }}>
                     <div className="mobile-nav-item"><FontAwesomeIcon icon={faMagnifyingGlass} /></div>
                 </Link>
 

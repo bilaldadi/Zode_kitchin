@@ -8,6 +8,7 @@ import { Snack } from './components/Snack.jsx';
 import {Cart} from './components/Cart.jsx';
 import {CartProvider} from "./context/CartContext.js.jsx";
 import { AuthProvider } from './context/AuthContext.jsx';
+import { AllItemsSearch } from './components/SearchPage.jsx';
 import './index.css'
 import { Account } from './components/Account.jsx';
 import { Login } from './components/Login.jsx';
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
             { path: "fruits", element: <Fruits /> },
             { path: "desserts", element: <Desserts /> },
             { path: "account", element: <Account /> },
+            { path: "search", element: <AllItemsSearch /> },
             { path: "cart", element: <Cart /> },
             { path: "login", element: <Login /> },
         ],

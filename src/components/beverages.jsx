@@ -18,6 +18,8 @@ export function Beverages() {
         beverage.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    
+
     useEffect(() => {
         AOS.init();
     }, []);
@@ -96,19 +98,19 @@ export function Beverages() {
                                 <span>SAR {beverage.price}</span>
                             </div>
                             <button
-                className={`btn ${addedItems.includes(beverage.id) ? 'added' : ''}`}
-                onClick={() => handleAddToCart(beverage)}
-                disabled={addedItems.includes(beverage.id)}
-              >
-                <FontAwesomeIcon icon={faCartShopping} className="cart-icon" />
-                <span className="text">{addedItems.includes(beverage.id) ? "Added" : "Add to order"}</span>
-              </button>
+                                className={`btn ${addedItems.includes(beverage.id) ? 'added' : ''}`}
+                                onClick={() => handleAddToCart(beverage)}
+                                disabled={addedItems.includes(beverage.id)}
+                            >
+                                <FontAwesomeIcon icon={faCartShopping} className="cart-icon" />
+                                <span className="text">{addedItems.includes(beverage.id) ? "Added" : "Add to Cart"}</span>
+                            </button>
                         </div>
                     </div>
                 ))}
             </div>
-            <RightPointer />
-            <LeftPointer />
+            {/* <RightPointer />
+            <LeftPointer /> */}
         </div>
     );
 }

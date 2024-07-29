@@ -9,6 +9,7 @@ import { CartContext } from '../context/CartContext.js.jsx';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [dropdownVisible, setDropdownVisible] = useState(false);
     const menuRef = useRef(null);
     const { totalItems } = useContext(CartContext);
 
@@ -19,6 +20,10 @@ const Navbar = () => {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+
+    const toggleDropdown = () => {
+        setDropdownVisible(!dropdownVisible);
+      };
 
     const handleClickOutside = (event) => {
         if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -37,6 +42,11 @@ const Navbar = () => {
         };
     }, [isMenuOpen]);
 
+    const handelLogout = () => {
+        localStorage.removeItem('authToken');
+        window.location.href = '/';
+    }
+
     return (
         <div>
             <div className="Nav-container">
@@ -51,7 +61,7 @@ const Navbar = () => {
                         <div className="menu-item">Home</div>
                     </Link>
 
-                    <Link to='/' style={{textDecoration: 'none'}}>    
+                    <Link to='/search' style={{textDecoration: 'none'}}>    
                         <div className="menu-item">Search</div>
                     </Link>
 
@@ -71,9 +81,21 @@ const Navbar = () => {
                         <div className="menu-item">Desserts</div>
                     </Link>
 
-                    <Link to='/account' style={{textDecoration: 'none'}}>
-                        <div className="menu-item"><FontAwesomeIcon icon={faUser} /></div>
-                    </Link>
+                    
+                        <div className="menu-item dropdown">
+                            <FontAwesomeIcon icon={faUser}/>
+                            
+                            <div className="drop-down-menu">
+
+                                <Link to='/account' style={{textDecoration: 'none'}}>
+                                    <div className="drop-down-item menu-item">Orders</div>
+                                </Link>
+
+                                <div className="drop-down-item menu-item" onClick={handelLogout}>Logout</div>
+                                
+                            </div>
+                        </div>
+                    
 
                     <Link to='/cart' style={{textDecoration: 'none'}}>
                         <div className="menu-item">
@@ -111,7 +133,11 @@ const Navbar = () => {
                             <span className="menu-item" onClick={toggleMenu}>Home</span>
                         </Link>
                     </div>
-                    <a href="#" className="menu-item" target="_blank" rel="noopener noreferrer" onClick={toggleMenu}>Search</a>
+                    <div className="menu-item">
+                        <Link to='/search' style={{ textDecoration: 'none' }}>
+                            <span className="menu-item" onClick={toggleMenu}>Search</span>
+                        </Link>
+                    </div>
                     <div className="menu-item">
                         <Link to='/beverages' style={{ textDecoration: 'none' }}>
                             <span className="menu-item" onClick={toggleMenu}>Beverages</span>
@@ -132,13 +158,28 @@ const Navbar = () => {
                             <span className="menu-item" onClick={toggleMenu}>Desserts</span>
                         </Link>
                     </div>
+
                     <div className="menu-item">
-                        <Link to='/account' style={{ textDecoration: 'none' }}>
-                            <span className="menu-item" onClick={toggleMenu}> 
+                        
+                            <span className="menu-item mobile-dropdown" onClick={toggleDropdown}> 
                                 <FontAwesomeIcon icon={faUser} />
                             </span>
-                        </Link>
+                            {dropdownVisible && (
+                                <div className="drop-down-menu">
+
+                                    <Link to="/account" onClick={toggleMenu} style={{ textDecoration: 'none' }}>
+                                    <div className="drop-down-item menu-item">Orders</div>
+                                    </Link>
+
+                                    <div className="drop-down-item menu-item" onClick={handelLogout}>
+                                    Logout
+                                    </div>
+
+                                </div>
+                            )}
+                            
                     </div>
+
                     <div className="menu-item">
                         <Link to='/cart' style={{ textDecoration: 'none' }}>
                             <span className="menu-item" onClick={toggleMenu}> <FontAwesomeIcon icon={faCartShopping} /> </span>

@@ -5,6 +5,8 @@ import Footer from "./components/Footer.jsx";
 import {MobileNav} from "./components/MobileNav.jsx";
 import {useNavigate} from 'react-router-dom';
 import { AuthContext } from './context/AuthContext.jsx';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -38,6 +40,7 @@ function App({ children }) {
     <>
         {isLoggedIn && <Navbar />}
         {isLoggedIn && <MobileNav />}
+        <ToastContainer />
         {children}
         <Footer />
 

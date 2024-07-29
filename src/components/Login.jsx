@@ -25,10 +25,9 @@ export function Login(){
           const response = await axios.post(`${ApiUrl}/auth/login`, {
             email,
             password,
-            // withCredentials: true,
           });
-    
-          const token = response.data.token;
+          
+          const token = response.data.data.token;
     
           // Save the token to localStorage
           localStorage.setItem('authToken', token);
@@ -81,7 +80,7 @@ export function Login(){
               type="email"
               id="email"
               name="email"
-              placeholder="Enter your Email:"
+              placeholder="name@zode.sa"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
