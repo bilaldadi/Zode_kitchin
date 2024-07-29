@@ -556,11 +556,14 @@ body.no-scroll {
   }
 
   .list-size .item-list-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     padding: 0.5rem;
     border-radius: 43.75px;
     background: #03D1B8;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: black;
     border: none;
     transition: all 0.3s ease-in-out;
