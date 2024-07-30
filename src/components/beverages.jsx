@@ -1,28 +1,38 @@
 import { useState, useEffect, useContext } from "react";
-import beveragesData from "../jsonData/beveragesData.js";
+import { getBeverageData } from "../jsonData/beveragesData.js";
 import { Search } from "./Search.jsx";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { CartContext } from '../context/CartContext.js.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { RightPointer,LeftPointer } from "./Pointer.jsx";
+import { RightPointer, LeftPointer } from "./Pointer.jsx";
 
 export function Beverages() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedPreferences, setSelectedPreferences] = useState({});
     const [addedItems, setAddedItems] = useState([]);
     const { addToCart } = useContext(CartContext);
-
-    const filteredBeverages = beveragesData.beverages.filter((beverage) =>
-        beverage.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    
+    const [beveragesData, setBeveragesData] = useState([]);
 
     useEffect(() => {
         AOS.init();
     }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await getBeverageData();
+            setBeveragesData(data);
+            // console.log("Fetched beverages data:", data);
+        };
+        fetchData();
+    }, []);
+
+    const filteredBeverages = beveragesData.filter((beverage) =>
+        beverage.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // console.log("Filtered Beverages:", filteredBeverages);
 
     const handlePreferenceSelect = (beverageId, preference) => {
         setSelectedPreferences((prevPreferences) => {
@@ -38,27 +48,31 @@ export function Beverages() {
     };
 
     const handleAddToCart = (beverage) => {
-        const preferences = selectedPreferences[beverage.id];
-        if (preferences && preferences.length > 0) {
-          preferences.forEach(preference => {
-            addToCart({ ...beverage, preference });
-          });
-        } else {
-          addToCart({ ...beverage });
-        }
-    
+        const preferences = selectedPreferences[beverage.id] || [];
+        const itemToAdd = {
+            ...beverage,
+            preferences: preferences.join(', '), // Combine preferences into a single string or array
+        };
+        addToCart(itemToAdd);
+
+        // Clear selected preferences for the specific beverage
+        setSelectedPreferences((prevPreferences) => ({
+            ...prevPreferences,
+            [beverage.id]: [],
+        }));
+
         setAddedItems((prevAddedItems) => [...prevAddedItems, beverage.id]);
         setTimeout(() => {
-          setAddedItems((prevAddedItems) =>
-            prevAddedItems.filter((id) => id !== beverage.id)
-          );
+            setAddedItems((prevAddedItems) =>
+                prevAddedItems.filter((id) => id !== beverage.id)
+            );
         }, 1000);
-      };
+    };
 
     useEffect(() => {
-        window.scrollTo(0, 0)
-      }, [])
-      
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className="elements-container" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="300">
             <h1>Beverages</h1>
@@ -68,24 +82,24 @@ export function Beverages() {
                 {filteredBeverages.map((beverage) => (
                     <div key={beverage.id} className="bcard">
                         <div className="image_container">
-                            <img src={beverage.img_url} alt="" />
+                            <img src={beverage.imgUrl} alt={beverage.name} />
                         </div>
                         <div className="title">
                             <span>{beverage.name}</span>
                         </div>
                         <p className="product_description">{beverage.description}</p>
                         <div className="size">
-                            {beverage.preferences && (
+                            {beverage.preferences && beverage.preferences.length > 0 && (
                                 <>
                                     <span>Preferences</span>
                                     <ul className="list-size">
                                         {beverage.preferences.map((preference, index) => (
                                             <li className="item-list" key={index}>
                                                 <button
-                                                    className={`item-list-button ${(selectedPreferences[beverage.id] || []).includes(preference) ? 'selected' : ''}`}
-                                                    onClick={() => handlePreferenceSelect(beverage.id, preference)}
+                                                    className={`item-list-button ${(selectedPreferences[beverage.id] || []).includes(preference.name) ? 'selected' : ''}`}
+                                                    onClick={() => handlePreferenceSelect(beverage.id, preference.name)}
                                                 >
-                                                    {preference}
+                                                    {preference.name}
                                                 </button>
                                             </li>
                                         ))}
@@ -114,3 +128,4 @@ export function Beverages() {
         </div>
     );
 }
+

@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useLocation } from 'react-router-dom';
-import testphoto from '../jsonData/beveragesData'
+
 
 export function Account() {
 
@@ -18,7 +18,7 @@ export function Account() {
     useEffect(() => {
       if (location.state && location.state.orderCompleted) {
           console.log('Order Completed state detected');
-          toast.success('Order Recived Successfully');
+          toast.success('Order Received Successfully');
       }
   }, [location.state]);
   
@@ -58,33 +58,35 @@ export function Account() {
           <div>
 
             <div className='customer-order-details'>
-              <h1>Welcome <span style={{color:'#03D1B8'}}>{userData.name}</span> </h1>
-              <p>You are logged in.</p>
+                <h1>
+                    Welcome <span
+                    style={{color: '#03D1B8'}}>{userData.gender === 'Male' ? 'Mr. ' + userData.name : 'Ms. ' + userData.name}</span>
+                </h1>
             </div>
 
-            <h2 className='order-h2' >My Orders</h2>
+              <h2 className='order-h2'>My Orders</h2>
 
-            <div className='details-table'>
+              {/*<div className='details-table'>*/}
 
-              <div className='details-table-oreder-details' >
-                  
-                    <img src={testphoto.beverages[0].img_url} alt="" />
-                    <p> Name: {testphoto.beverages[0].name}</p>
-                    <p> Quantitiy: {testphoto.beverages[0].quantity}</p>
-                    <p> Status: {testphoto.beverages[0].status}</p>
-                  
-              </div>
+            {/*  <div className='details-table-oreder-details' >*/}
+            {/*      */}
+            {/*        <img src={testphoto.beverages[0].img_url} alt="" />*/}
+            {/*        <p> Name: {testphoto.beverages[0].name}</p>*/}
+            {/*        <p> Quantitiy: {testphoto.beverages[0].quantity}</p>*/}
+            {/*        <p> Status: {testphoto.beverages[0].status}</p>*/}
+            {/*      */}
+            {/*  </div>*/}
 
-              <div className='details-table-oreder-details' >
-                  
-                  <img src={testphoto.beverages[0].img_url} alt="" />
-                  <p> Name: {testphoto.beverages[0].name}</p>
-                  <p> Quantitiy: {testphoto.beverages[0].quantity}</p>
-                  <p> Status: {testphoto.beverages[0].status}</p>
-                
-            </div>
+            {/*  <div className='details-table-oreder-details' >*/}
+            {/*      */}
+            {/*      <img src={testphoto.beverages[0].img_url} alt="" />*/}
+            {/*      <p> Name: {testphoto.beverages[0].name}</p>*/}
+            {/*      <p> Quantitiy: {testphoto.beverages[0].quantity}</p>*/}
+            {/*      <p> Status: {testphoto.beverages[0].status}</p>*/}
+            {/*    */}
+            {/*</div>*/}
 
-            </div>
+            {/*</div>*/}
 
           </div>
         );

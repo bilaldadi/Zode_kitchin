@@ -1,26 +1,38 @@
 import { useState, useEffect, useContext } from "react";
-import dessertsData from "../jsonData/dessertsData.js";
+import {getDessertsData} from "../jsonData/dessertsData.js";
 import { Search } from "./Search.jsx";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { CartContext } from '../context/CartContext.js.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { RightPointer,LeftPointer } from "./Pointer.jsx";
+import { RightPointer, LeftPointer } from "./Pointer.jsx";
 
 export function Desserts() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedPreferences, setSelectedPreferences] = useState({});
     const [addedItems, setAddedItems] = useState([]);
     const { addToCart } = useContext(CartContext);
-
-    const filteredDesserts = dessertsData.desserts.filter((dessert) =>
-        dessert.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const [dessertsData, setdessertsData] = useState([]);
 
     useEffect(() => {
         AOS.init();
     }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await getDessertsData();
+            setdessertsData(data);
+            // console.log("Fetched beverages data:", data);
+        };
+        fetchData();
+    }, []);
+
+    const filteredDesserts = dessertsData.filter((dessert) =>
+        dessert.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // console.log("Filtered Beverages:", filteredBeverages);
 
     const handlePreferenceSelect = (dessertId, preference) => {
         setSelectedPreferences((prevPreferences) => {
@@ -36,54 +48,58 @@ export function Desserts() {
     };
 
     const handleAddToCart = (dessert) => {
-        const preferences = selectedPreferences[dessert.id];
-        if (preferences && preferences.length > 0) {
-          preferences.forEach(preference => {
-            addToCart({ ...dessert, preference });
-          });
-        } else {
-          addToCart({ ...dessert });
-        }
-    
+        const preferences = selectedPreferences[dessert.id] || [];
+        const itemToAdd = {
+            ...dessert,
+            preferences: preferences.join(', '), // Combine preferences into a single string or array
+        };
+        addToCart(itemToAdd);
+
+        // Clear selected preferences for the specific beverage
+        setSelectedPreferences((prevPreferences) => ({
+            ...prevPreferences,
+            [dessert.id]: [],
+        }));
+
         setAddedItems((prevAddedItems) => [...prevAddedItems, dessert.id]);
         setTimeout(() => {
-          setAddedItems((prevAddedItems) =>
-            prevAddedItems.filter((id) => id !== dessert.id)
-          );
+            setAddedItems((prevAddedItems) =>
+                prevAddedItems.filter((id) => id !== dessert.id)
+            );
         }, 1000);
-      };
+    };
 
     useEffect(() => {
-        window.scrollTo(0, 0)
-      }, [])
-      
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className="elements-container" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="300">
             <h1>Desserts</h1>
             <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
             <div className="bCrad_contanier">
-                {filteredDesserts.map((dessert) => (
-                    <div key={dessert.id} className="bcard">
+                {filteredDesserts.map((desserts) => (
+                    <div key={desserts.id} className="bcard">
                         <div className="image_container">
-                            <img src={dessert.img_url} alt="" />
+                            <img src={desserts.imgUrl} alt={desserts.name} />
                         </div>
                         <div className="title">
-                            <span>{dessert.name}</span>
+                            <span>{desserts.name}</span>
                         </div>
-                        <p className="product_description">{dessert.description}</p>
+                        <p className="product_description">{desserts.description}</p>
                         <div className="size">
-                            {dessert.preferences && (
+                            {desserts.preferences && desserts.preferences.length > 0 && (
                                 <>
                                     <span>Preferences</span>
                                     <ul className="list-size">
-                                        {dessert.preferences.map((preference, index) => (
+                                        {desserts.preferences.map((preference, index) => (
                                             <li className="item-list" key={index}>
                                                 <button
-                                                    className={`item-list-button ${(selectedPreferences[dessert.id] || []).includes(preference) ? 'selected' : ''}`}
-                                                    onClick={() => handlePreferenceSelect(dessert.id, preference)}
+                                                    className={`item-list-button ${(selectedPreferences[desserts.id] || []).includes(preference.name) ? 'selected' : ''}`}
+                                                    onClick={() => handlePreferenceSelect(desserts.id, preference.name)}
                                                 >
-                                                    {preference}
+                                                    {preference.name}
                                                 </button>
                                             </li>
                                         ))}
@@ -93,16 +109,16 @@ export function Desserts() {
                         </div>
                         <div className="action">
                             <div className="price">
-                                <span>SAR {dessert.price}</span>
+                                <span>SAR {desserts.price}</span>
                             </div>
                             <button
-                className={`btn ${addedItems.includes(dessert.id) ? 'added' : ''}`}
-                onClick={() => handleAddToCart(dessert)}
-                disabled={addedItems.includes(dessert.id)}
-              >
-                <FontAwesomeIcon icon={faCartShopping} className="cart-icon" />
-                <span className="text">{addedItems.includes(dessert.id) ? "Added" : "Add to Cart"}</span>
-              </button>
+                                className={`btn ${addedItems.includes(desserts.id) ? 'added' : ''}`}
+                                onClick={() => handleAddToCart(desserts)}
+                                disabled={addedItems.includes(desserts.id)}
+                            >
+                                <FontAwesomeIcon icon={faCartShopping} className="cart-icon" />
+                                <span className="text">{addedItems.includes(desserts.id) ? "Added" : "Add to Cart"}</span>
+                            </button>
                         </div>
                     </div>
                 ))}
@@ -112,3 +128,4 @@ export function Desserts() {
         </div>
     );
 }
+

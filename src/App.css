@@ -479,10 +479,11 @@ body.no-scroll {
     --light: #d9d9d9;
     --zinc-800: #18181b;
     --bg-linear: linear-gradient(0deg, var(--primary) 50%, var(--light) 125%);
-
+    overflow: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 1rem;
     padding: 1rem;
     width: 15rem;
@@ -541,6 +542,7 @@ body.no-scroll {
   .size {
     font-size: 0.75rem;
     color: var(--light);
+
   }
 
   .list-size {
@@ -549,6 +551,8 @@ body.no-scroll {
     justify-content: center;
     gap: 0.75rem;
     margin-top: 0.75rem;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+
   }
 
   .list-size .item-list {
@@ -567,7 +571,7 @@ body.no-scroll {
     color: black;
     border: none;
     transition: all 0.3s ease-in-out;
-    width: 5rem;
+    width: 6rem;
   }
 
   .item-list-button.selected {
