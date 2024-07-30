@@ -2,9 +2,10 @@ import { useState, useEffect, useContext } from 'react';
 import axios from "axios";
 import ApiUrl from './MainUrl';
 import { AuthContext } from '../context/AuthContext';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useLocation } from 'react-router-dom';
+import CollapsibleTable from './CollapsibleTable';
 
 
 export function Account() {
@@ -66,27 +67,7 @@ export function Account() {
 
               <h2 className='order-h2'>My Orders</h2>
 
-              {/*<div className='details-table'>*/}
-
-            {/*  <div className='details-table-oreder-details' >*/}
-            {/*      */}
-            {/*        <img src={testphoto.beverages[0].img_url} alt="" />*/}
-            {/*        <p> Name: {testphoto.beverages[0].name}</p>*/}
-            {/*        <p> Quantitiy: {testphoto.beverages[0].quantity}</p>*/}
-            {/*        <p> Status: {testphoto.beverages[0].status}</p>*/}
-            {/*      */}
-            {/*  </div>*/}
-
-            {/*  <div className='details-table-oreder-details' >*/}
-            {/*      */}
-            {/*      <img src={testphoto.beverages[0].img_url} alt="" />*/}
-            {/*      <p> Name: {testphoto.beverages[0].name}</p>*/}
-            {/*      <p> Quantitiy: {testphoto.beverages[0].quantity}</p>*/}
-            {/*      <p> Status: {testphoto.beverages[0].status}</p>*/}
-            {/*    */}
-            {/*</div>*/}
-
-            {/*</div>*/}
+             <CollapsibleTable />
 
           </div>
         );

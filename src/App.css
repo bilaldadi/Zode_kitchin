@@ -644,12 +644,13 @@ body.no-scroll {
   }
 
   /*hover effect*/
-  button:hover {
+  /* button:hover {
     color: #fff;
     background-color: #1A1A1A;
     box-shadow: rgba(0, 0, 0, 0.5) 0 10px 20px;
     transform: translateY(-3px);
-  }
+  } */
+   
   /*button pressing effect*/
   button:active {
     box-shadow: none;
@@ -1333,6 +1334,15 @@ h1 {
     object-fit: cover;
     border-radius: 1em;
   }
+}
+
+.orders-table{
+  background: rgba(255, 255, 255, 0.21);
+  border-radius: 26px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 

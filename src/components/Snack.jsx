@@ -6,7 +6,6 @@ import 'aos/dist/aos.css';
 import { CartContext } from '../context/CartContext.js.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { RightPointer, LeftPointer } from "./Pointer.jsx";
 
 export function Snack() {
     const [searchTerm, setSearchTerm] = useState("");

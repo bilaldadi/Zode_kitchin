@@ -4,6 +4,7 @@ export const CartContext = createContext();
 
 const cartFromLocalStorage =JSON.parse(localStorage.getItem('cartItems') || '[]');
 
+// eslint-disable-next-line react/prop-types
 export function CartProvider({ children }) {
     const [cartItems, setCartItems] = useState(cartFromLocalStorage);
 
