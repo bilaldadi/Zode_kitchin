@@ -44,6 +44,7 @@ const Navbar = () => {
 
     const handelLogout = () => {
         localStorage.removeItem('authToken');
+        localStorage.removeItem('cartItems');
         window.location.href = '/';
     }
 

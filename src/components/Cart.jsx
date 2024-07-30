@@ -125,7 +125,7 @@ export function Cart() {
     };
 
     const handleCompleteOrder = () => {
-        console.log('Order Completed');
+        // console.log('Order Completed');
         navigate('/account', { state: { orderCompleted: true } });
 
         setTimeout(() => {
@@ -191,7 +191,10 @@ export function Cart() {
                             </div>
                             <div className="cart-summary">
                                 <p className="total-label">Total:</p>
-                                <p className="total-price">SAR {cartItems.reduce((total, item) => total + item.price * item.quantity, 0)}</p>
+                                <p className="total-price">
+                                    SAR {(cartItems ?? []).reduce((total, item) => total + item.price * item.quantity, 0)}
+                                </p>
+
                             </div>
                             <button className="checkout-button" onClick={handleCompleteOrder}>Send Order</button>
                         </>
