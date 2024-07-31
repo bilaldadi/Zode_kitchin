@@ -7,6 +7,20 @@ import {useNavigate} from 'react-router-dom';
 import { AuthContext } from './context/AuthContext.jsx';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { createTheme , ThemeProvider } from '@mui/material/styles';
+
+
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      'poppins',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif'
+    ].join(','),
+  }
+});
 
 
 
@@ -38,11 +52,13 @@ function App({ children }) {
   
   return (
     <>
-        {isLoggedIn && <Navbar />}
-        {isLoggedIn && <MobileNav />}
-        <ToastContainer />
-        {children}
-        <Footer />
+       <ThemeProvider theme={theme}>
+          {isLoggedIn && <Navbar />}
+          {isLoggedIn && <MobileNav />}
+          <ToastContainer />
+          {children}
+          <Footer />
+       </ThemeProvider>
 
     </>
   )

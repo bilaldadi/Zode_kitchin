@@ -67,7 +67,7 @@ export function Account() {
 
               <h2 className='order-h2'>My Orders</h2>
 
-             <CollapsibleTable />
+             <CollapsibleTable  />
 
           </div>
         );

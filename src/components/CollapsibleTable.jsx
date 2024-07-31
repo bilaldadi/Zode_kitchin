@@ -43,7 +43,7 @@ function Row(props) {
   return (
     <React.Fragment>
 
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+      <TableRow sx={{ '& > *': { borderBottom: 'none' } }}>
         <TableCell>
           <IconButton
             aria-label="expand row"
@@ -54,45 +54,48 @@ function Row(props) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">
+        <TableCell component="th" scope="row" sx={{color:'white'}}>
           {row.name}
         </TableCell>
-        <TableCell align="right">{row.calories}</TableCell>
-        <TableCell align="right">{row.fat}</TableCell>
-        <TableCell align="right">{row.carbs}</TableCell>
-        <TableCell align="right">{row.protein}</TableCell>
+        <TableCell sx={{color:'white'}} align="right">{row.calories}</TableCell>
+        <TableCell sx={{color:'white'}} align="right">{row.fat}</TableCell>
+        <TableCell sx={{color:'white'}} align="right">{row.carbs}</TableCell>
+        <TableCell sx={{color:'white'}} align="right">{row.protein}</TableCell>
       </TableRow>
 
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6} sx={{color:'white'}}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
                 History
               </Typography>
               <Table size="small" aria-label="purchases">
+
                 <TableHead>
                   <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Customer</TableCell>
-                    <TableCell align="right">Amount</TableCell>
-                    <TableCell align="right">Total price ($)</TableCell>
+                    <TableCell sx={{color:'white'}} >Date</TableCell>
+                    <TableCell sx={{color:'white'}}>Customer</TableCell>
+                    <TableCell sx={{color:'white'}} align="right">Amount</TableCell>
+                    <TableCell sx={{color:'white'}} align="right">Total price ($)</TableCell>
                   </TableRow>
                 </TableHead>
+
                 <TableBody>
                   {row.history.map((historyRow) => (
                     <TableRow key={historyRow.date}>
-                      <TableCell component="th" scope="row">
+                      <TableCell sx={{color:'white'}} component="th" scope="row">
                         {historyRow.date}
                       </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align="right">{historyRow.amount}</TableCell>
-                      <TableCell align="right">
+                      <TableCell sx={{color:'white'}}>{historyRow.customerId}</TableCell>
+                      <TableCell sx={{color:'white'}} align="right">{historyRow.amount}</TableCell>
+                      <TableCell sx={{color:'white'}} align="right">
                         {Math.round(historyRow.amount * row.price * 100) / 100}
                       </TableCell>
                     </TableRow>
-                  ))}
+                  ))} 
                 </TableBody>
+
               </Table>
             </Box>
           </Collapse>
@@ -133,21 +136,24 @@ export default function CollapsibleTable() {
   return (
     <TableContainer>
       <Table aria-label="collapsible table" className='orders-table'>
+
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell sx={{color:'white'}}>Order Number</TableCell>
+            <TableCell sx={{color:'white'}} align="right">Calories</TableCell>
+            <TableCell sx={{color:'white'}} align="right">Fat&nbsp;(g)</TableCell>
+            <TableCell sx={{color:'white'}} align="right">Carbs&nbsp;(g)</TableCell>
+            <TableCell sx={{color:'white'}} align="right">Protein&nbsp;(g)</TableCell>
           </TableRow>
         </TableHead>
+
         <TableBody>
           {rows.map((row) => (
             <Row key={row.name} row={row} />
           ))}
         </TableBody>
+
       </Table>
     </TableContainer>
   );
