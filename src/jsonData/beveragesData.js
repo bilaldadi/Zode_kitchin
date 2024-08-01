@@ -2,9 +2,14 @@ import axios from "axios";
 import ApiUrl from "../components/MainUrl.js";
 import { handleUnauthorized } from "../utils/auth.js";
 
+
 export const getBeverageData = async () => {
   try {
     const token = localStorage.getItem("authToken");
+    if (!token) {
+      throw new Error("No authentication token found");
+    }
+
     const res = await axios.get(`${ApiUrl}/api/v1/menu/1`, {
       headers: {
         "Content-type": "application/json",
@@ -13,19 +18,49 @@ export const getBeverageData = async () => {
         "ngrok-skip-browser-warning": "69420",
       },
     });
+
     if (res.status === 200) {
       return res.data.data;
-    } else if (res.status === 403) {
-      handleUnauthorized();
     } else {
-      console.log('Unexpected status code:', res.status);
+      throw new Error(`Unexpected status code: ${res.status}`);
     }
+
   } catch (error) {
-    if (error.response && error.response.status === 403) {
-      handleUnauthorized();
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        switch (error.response.status) {
+          case 401:
+          case 403:
+            console.error("Authentication error:", error.response.data);
+            handleUnauthorized();
+            break;
+          case 404:
+            console.error("Resource not found:", error.response.data);
+            break;
+          case 500:
+            console.error("Server error:", error.response.data);
+            break;
+          default:
+            console.error(`HTTP error! status: ${error.response.status}`);
+        }
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error("No response received:", error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error("Error setting up the request:", error.message);
+      }
     } else {
-      console.error("Error fetching Beverages data:", error);
+      // Non-Axios error
+      console.error("Non-Axios error occurred:", error);
     }
+
+    // You might want to throw the error here to let the caller handle it
+    // throw error;
+
+    // Or return an empty array as in your original code
     return [];
   }
 };

@@ -6,6 +6,7 @@ import 'aos/dist/aos.css';
 import { CartContext } from '../context/CartContext.js.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { Loading } from "./Loading.jsx";
 
 
 export function Beverages() {
@@ -14,6 +15,7 @@ export function Beverages() {
     const [addedItems, setAddedItems] = useState([]);
     const { addToCart } = useContext(CartContext);
     const [beveragesData, setBeveragesData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         AOS.init();
@@ -21,8 +23,11 @@ export function Beverages() {
 
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true);
             const data = await getBeverageData();
             setBeveragesData(data);
+            console.log("Fetched beverages data:", data);
+            setLoading(false);
             // console.log("Fetched beverages data:", data);
         };
         fetchData();
@@ -78,6 +83,15 @@ export function Beverages() {
             <h1>Beverages</h1>
             <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
+            {loading ? (
+                <div className="bloading">
+                    <Loading />
+                    <Loading />
+                    <Loading />
+                    <Loading />
+                </div>
+                
+            ) : (
             <div className="bCrad_contanier">
                 {filteredBeverages.map((beverage) => (
                     <div key={beverage.id} className="bcard">
@@ -123,9 +137,9 @@ export function Beverages() {
                     </div>
                 ))}
             </div>
-            {/* <RightPointer />
-            <LeftPointer /> */}
+            )}
         </div>
+        
     );
 }
 

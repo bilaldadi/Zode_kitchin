@@ -13,24 +13,26 @@ import Typography from '@mui/material/Typography';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-function createData(name, calories, fat, carbs, protein, price) {
+function createData(name, calories, fat, carbs, status1, status) {
   return {
     name,
     calories,
     fat,
     carbs,
-    protein,
-    price,
+    status1,
+    status,
     history: [
       {
         date: '2020-01-05',
-        customerId: '11091700',
+        customerId: 'Apple',
         amount: 3,
+        status:"processing.."
       },
       {
         date: '2020-01-02',
-        customerId: 'Anonymous',
+        customerId: 'Coffe',
         amount: 1,
+        status:"processing.."
       },
     ],
   };
@@ -43,13 +45,13 @@ function Row(props) {
   return (
     <React.Fragment>
 
-      <TableRow sx={{ '& > *': { borderBottom: 'none' } }}>
+      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell>
           <IconButton
             aria-label="expand row"
             size="small"
             onClick={() => setOpen(!open)}
-            sx={{ color: 'red', ":hover": {color: 'green'} }}
+            sx={{ color: 'white' }}
           >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
@@ -60,7 +62,17 @@ function Row(props) {
         <TableCell sx={{color:'white'}} align="right">{row.calories}</TableCell>
         <TableCell sx={{color:'white'}} align="right">{row.fat}</TableCell>
         <TableCell sx={{color:'white'}} align="right">{row.carbs}</TableCell>
-        <TableCell sx={{color:'white'}} align="right">{row.protein}</TableCell>
+        <TableCell
+                  sx={{
+                    color: row.status1 === 'done' ? 'green' :
+                          row.status1 === 'processing' ? 'orange' :
+                          row.status1 === 'out of stock' ? 'red' :
+                          'white'
+                  }}
+                  align="right"
+                >
+                  {row.status1}
+                </TableCell>
       </TableRow>
 
       <TableRow>
@@ -68,16 +80,16 @@ function Row(props) {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
-                History
+                Oreder Details
               </Typography>
               <Table size="small" aria-label="purchases">
 
                 <TableHead>
                   <TableRow>
                     <TableCell sx={{color:'white'}} >Date</TableCell>
-                    <TableCell sx={{color:'white'}}>Customer</TableCell>
-                    <TableCell sx={{color:'white'}} align="right">Amount</TableCell>
-                    <TableCell sx={{color:'white'}} align="right">Total price ($)</TableCell>
+                    <TableCell sx={{color:'white'}}>item</TableCell>
+                    <TableCell sx={{color:'white'}} align="right">Quantity</TableCell>
+                    <TableCell sx={{color:'white'}} align="right">Status</TableCell>
                   </TableRow>
                 </TableHead>
 
@@ -89,9 +101,7 @@ function Row(props) {
                       </TableCell>
                       <TableCell sx={{color:'white'}}>{historyRow.customerId}</TableCell>
                       <TableCell sx={{color:'white'}} align="right">{historyRow.amount}</TableCell>
-                      <TableCell sx={{color:'white'}} align="right">
-                        {Math.round(historyRow.amount * row.price * 100) / 100}
-                      </TableCell>
+                      <TableCell sx={{color:'white'}} align="right">{historyRow.status}</TableCell>
                     </TableRow>
                   ))} 
                 </TableBody>
@@ -111,25 +121,26 @@ Row.propTypes = {
     calories: PropTypes.number.isRequired,
     carbs: PropTypes.number.isRequired,
     fat: PropTypes.number.isRequired,
+    status: PropTypes.string.isRequired,
     history: PropTypes.arrayOf(
       PropTypes.shape({
         amount: PropTypes.number.isRequired,
         customerId: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
+        
       }),
     ).isRequired,
     name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    protein: PropTypes.number.isRequired,
+    status1: PropTypes.string.isRequired,
   }).isRequired,
 };
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 9.0, 3.99),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-  createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-  createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-  createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
+  createData('#125642', 159, 6.0, 24, 'Processing..', 'processing..'),
+  createData('#1852642', 237, 9.0, 37, 'Done', 'processing..'),
+  createData('#135142', 262, 16.0, 24, 'Out of stock', 'processing..'),
+  createData('#1854242', 305, 3.7, 67, 'Processing..', 'processing..'),
+  createData('#136742', 356, 16.0, 49, 'Processing..', 'processing..'),
 ];
 
 export default function CollapsibleTable() {
@@ -144,7 +155,7 @@ export default function CollapsibleTable() {
             <TableCell sx={{color:'white'}} align="right">Calories</TableCell>
             <TableCell sx={{color:'white'}} align="right">Fat&nbsp;(g)</TableCell>
             <TableCell sx={{color:'white'}} align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell sx={{color:'white'}} align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell sx={{color:'white'}} align="right">Status</TableCell>
           </TableRow>
         </TableHead>
 

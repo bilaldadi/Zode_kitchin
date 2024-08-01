@@ -6,6 +6,7 @@ import 'aos/dist/aos.css';
 import { CartContext } from '../context/CartContext.js.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { Loading } from "./Loading.jsx";
 
 
 export function Desserts() {
@@ -14,6 +15,7 @@ export function Desserts() {
     const [addedItems, setAddedItems] = useState([]);
     const { addToCart } = useContext(CartContext);
     const [dessertsData, setdessertsData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         AOS.init();
@@ -21,8 +23,10 @@ export function Desserts() {
 
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true);
             const data = await getDessertsData();
             setdessertsData(data);
+            setLoading(false);
             // console.log("Fetched beverages data:", data);
         };
         fetchData();
@@ -78,6 +82,15 @@ export function Desserts() {
             <h1>Desserts</h1>
             <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
+            {loading ? (
+                <div className="bloading">
+                    <Loading />
+                    <Loading />
+                    <Loading />
+                    <Loading />
+                </div>
+                
+            ) : (
             <div className="bCrad_contanier">
                 {filteredDesserts.map((desserts) => (
                     <div key={desserts.id} className="bcard">
@@ -123,8 +136,8 @@ export function Desserts() {
                     </div>
                 ))}
             </div>
-            {/* <RightPointer />
-            <LeftPointer /> */}
+           
+            )}
         </div>
     );
 }

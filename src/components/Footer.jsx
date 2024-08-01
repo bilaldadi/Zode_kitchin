@@ -8,7 +8,7 @@ export default function Footer() {
     return(
         <div className="footer">
             <div className="footer-rights">
-                <p> © 2024 Zode. All Rights Reserved. CR: 4030517503    VAT: 311128656400003</p>
+                <p> © 2024 Zode. All Rights Reserved. </p>
             </div>
             <div className="social-container">
                 <a target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}} href="https://www.instagram.com/zode_sa/?igshid=MzMyNGUyNmU2YQ%3D%3D&utm_source=qr">

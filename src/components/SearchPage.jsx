@@ -5,9 +5,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { RightPointer, LeftPointer } from './Pointer.jsx';
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext.js.jsx';
+import { Loading } from './Loading.jsx';
 
 
 
@@ -17,12 +17,15 @@ export function AllItemsSearch() {
     const [selectedPreferences, setSelectedPreferences] = useState({});
     const [addedItems, setAddedItems] = useState([]);
     const { addToCart } = useContext(CartContext);
+    const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const data = await getAllItems();
       setAllItems(data);
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -81,6 +84,15 @@ export function AllItemsSearch() {
     <div className="elements-container" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="300">
       <h1>Search</h1>
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      {loading ? (
+                <div className="bloading">
+                    <Loading />
+                    <Loading />
+                    <Loading />
+                    <Loading />
+                </div>
+                
+            ) : (
       <div className="bCrad_contanier">
         {filteredItems.map((item) => (
             <div key={item.key} className="bcard">
@@ -145,8 +157,7 @@ export function AllItemsSearch() {
             </div>
         ))}
       </div>
-      {/* <RightPointer />
-      <LeftPointer /> */}
+      )}
     </div>
   );
 }
