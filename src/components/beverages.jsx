@@ -7,6 +7,8 @@ import { CartContext } from '../context/CartContext.js.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { Loading } from "./Loading.jsx";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export function Beverages() {
@@ -26,8 +28,10 @@ export function Beverages() {
             setLoading(true);
             const data = await getBeverageData();
             setBeveragesData(data);
-            console.log("Fetched beverages data:", data);
             setLoading(false);
+            if(data.length === 0) {
+                toast.error("Some error occurred, please try again later");
+            }
             // console.log("Fetched beverages data:", data);
         };
         fetchData();
@@ -79,65 +83,68 @@ export function Beverages() {
     }, []);
 
     return (
-        <div className="elements-container" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="300">
-            <h1>Beverages</h1>
-            <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <div>
+            
+            <div className="elements-container" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="300">
+                <h1>Beverages</h1>
+                <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-            {loading ? (
-                <div className="bloading">
-                    <Loading />
-                    <Loading />
-                    <Loading />
-                    <Loading />
-                </div>
-                
-            ) : (
-            <div className="bCrad_contanier">
-                {filteredBeverages.map((beverage) => (
-                    <div key={beverage.id} className="bcard">
-                        <div className="image_container">
-                            <img src={beverage.imgUrl} alt={beverage.name} />
-                        </div>
-                        <div className="title">
-                            <span>{beverage.name}</span>
-                        </div>
-                        <p className="product_description">{beverage.description}</p>
-                        <div className="size">
-                            {beverage.preferences && beverage.preferences.length > 0 && (
-                                <>
-                                    <span>Preferences</span>
-                                    <ul className="list-size">
-                                        {beverage.preferences.map((preference, index) => (
-                                            <li className="item-list" key={index}>
-                                                <button
-                                                    className={`item-list-button ${(selectedPreferences[beverage.id] || []).includes(preference.name) ? 'selected' : ''}`}
-                                                    onClick={() => handlePreferenceSelect(beverage.id, preference.name)}
-                                                >
-                                                    {preference.name}
-                                                </button>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </>
-                            )}
-                        </div>
-                        <div className="action">
-                            <div className="price">
-                                <span>SAR {beverage.price}</span>
-                            </div>
-                            <button
-                                className={`btn ${addedItems.includes(beverage.id) ? 'added' : ''}`}
-                                onClick={() => handleAddToCart(beverage)}
-                                disabled={addedItems.includes(beverage.id)}
-                            >
-                                <FontAwesomeIcon icon={faCartShopping} className="cart-icon" />
-                                <span className="text">{addedItems.includes(beverage.id) ? "Added" : "Add to Cart"}</span>
-                            </button>
-                        </div>
+                {loading ? (
+                    <div className="bloading">
+                        <Loading />
+                        <Loading />
+                        <Loading />
+                        <Loading />
                     </div>
-                ))}
+                    
+                ) : (
+                <div className="bCrad_contanier">
+                    {filteredBeverages.map((beverage) => (
+                        <div key={beverage.id} className="bcard">
+                            <div className="image_container">
+                                <img src={beverage.imgUrl} alt={beverage.name} />
+                            </div>
+                            <div className="title">
+                                <span>{beverage.name}</span>
+                            </div>
+                            <p className="product_description">{beverage.description}</p>
+                            <div className="size">
+                                {beverage.preferences && beverage.preferences.length > 0 ? (
+                                    <>
+                                        <span>Preferences</span>
+                                        <ul className="list-size">
+                                            {beverage.preferences.map((preference, index) => (
+                                                <li className="item-list" key={index}>
+                                                    <button
+                                                        className={`item-list-button ${(selectedPreferences[beverage.id] || []).includes(preference.name) ? 'selected' : ''}`}
+                                                        onClick={() => handlePreferenceSelect(beverage.id, preference.name)}
+                                                    >
+                                                        {preference.name}
+                                                    </button>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </>
+                                ): "No preferences available"}
+                            </div>
+                            <div className="action">
+                                <div className="price">
+                                    <span>SAR {beverage.price}</span>
+                                </div>
+                                <button
+                                    className={`btn ${addedItems.includes(beverage.id) ? 'added' : ''}`}
+                                    onClick={() => handleAddToCart(beverage)}
+                                    disabled={addedItems.includes(beverage.id)}
+                                >
+                                    <FontAwesomeIcon icon={faCartShopping} className="cart-icon" />
+                                    <span className="text">{addedItems.includes(beverage.id) ? "Added" : "Add to Cart"}</span>
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                )}
             </div>
-            )}
         </div>
         
     );

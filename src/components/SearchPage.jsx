@@ -8,6 +8,8 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext.js.jsx';
 import { Loading } from './Loading.jsx';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -26,6 +28,9 @@ export function AllItemsSearch() {
       const data = await getAllItems();
       setAllItems(data);
       setLoading(false);
+      if(data.length === 0) {
+        toast.error("Some error occurred, please try again later");
+    }
     };
     fetchData();
   }, []);
@@ -81,83 +86,86 @@ export function AllItemsSearch() {
   }, []);
 
   return (
-    <div className="elements-container" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="300">
-      <h1>Search</h1>
-      <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      {loading ? (
-                <div className="bloading">
-                    <Loading />
-                    <Loading />
-                    <Loading />
-                    <Loading />
+    <div>
+      
+      <div className="elements-container" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="300">
+        <h1>Search</h1>
+        <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        {loading ? (
+                  <div className="bloading">
+                      <Loading />
+                      <Loading />
+                      <Loading />
+                      <Loading />
+                  </div>
+                  
+              ) : (
+        <div className="bCrad_contanier">
+          {filteredItems.map((item) => (
+              <div key={item.key} className="bcard">
+                <div className="image_container">
+                  <img src={item.imgUrl} alt=""/>
                 </div>
-                
-            ) : (
-      <div className="bCrad_contanier">
-        {filteredItems.map((item) => (
-            <div key={item.key} className="bcard">
-              <div className="image_container">
-                <img src={item.imgUrl} alt=""/>
-              </div>
-              <div className="title">
-                <span>{item.name}</span>
-              </div>
-              <p className="product_description">{item.description}</p>
-              {/*<div className="size">*/}
-              {/*  {item.preferences && (*/}
-              {/*    <>*/}
-              {/*      <span>Preferences</span>*/}
-              {/*      <ul className="list-size">*/}
-              {/*        {item.preferences.map((preference, index) => (*/}
-              {/*          <li className="item-list" key={index}>*/}
-              {/*            <button*/}
-              {/*              className={`item-list-button ${(selectedPreferences[item.id] || []).includes(preference) ? 'selected' : ''}`}*/}
-              {/*              onClick={() => handlePreferenceSelect(item.id, preference)}*/}
-              {/*            >*/}
-              {/*              {preference}*/}
-              {/*            </button>*/}
-              {/*          </li>*/}
-              {/*        ))}*/}
-              {/*      </ul>*/}
-              {/*    </>*/}
-              {/*  )}*/}
-              {/*</div>*/}
-              <div className="size">
-                {item.preferences && item.preferences.length > 0 && (
-                    <>
-                      <span>Preferences</span>
-                      <ul className="list-size">
-                        {item.preferences.map((preference, index) => (
-                            <li className="item-list" key={index}>
-                              <button
-                                  className={`item-list-button ${(selectedPreferences[item.id] || []).includes(preference.name) ? 'selected' : ''}`}
-                                  onClick={() => handlePreferenceSelect(item.id, preference.name)}
-                              >
-                                {preference.name}
-                              </button>
-                            </li>
-                        ))}
-                      </ul>
-                    </>
-                )}
-              </div>
-              <div className="action">
-                <div className="price">
-                  <span>SAR {item.price}</span>
+                <div className="title">
+                  <span>{item.name}</span>
                 </div>
-                <button
-                    className={`btn ${addedItems.includes(item.id) ? 'added' : ''}`}
-                    onClick={() => handleAddToCart(item)}
-                    disabled={addedItems.includes(item.id)}
-                >
-                  <FontAwesomeIcon icon={faCartShopping} className="cart-icon"/>
-                  <span className="text">{addedItems.includes(item.id) ? 'Added' : 'Add to Cart'}</span>
-                </button>
+                <p className="product_description">{item.description}</p>
+                {/*<div className="size">*/}
+                {/*  {item.preferences && (*/}
+                {/*    <>*/}
+                {/*      <span>Preferences</span>*/}
+                {/*      <ul className="list-size">*/}
+                {/*        {item.preferences.map((preference, index) => (*/}
+                {/*          <li className="item-list" key={index}>*/}
+                {/*            <button*/}
+                {/*              className={`item-list-button ${(selectedPreferences[item.id] || []).includes(preference) ? 'selected' : ''}`}*/}
+                {/*              onClick={() => handlePreferenceSelect(item.id, preference)}*/}
+                {/*            >*/}
+                {/*              {preference}*/}
+                {/*            </button>*/}
+                {/*          </li>*/}
+                {/*        ))}*/}
+                {/*      </ul>*/}
+                {/*    </>*/}
+                {/*  )}*/}
+                {/*</div>*/}
+                <div className="size">
+                  {item.preferences && item.preferences.length > 0 ? (
+                      <>
+                        <span>Preferences</span>
+                        <ul className="list-size">
+                          {item.preferences.map((preference, index) => (
+                              <li className="item-list" key={index}>
+                                <button
+                                    className={`item-list-button ${(selectedPreferences[item.id] || []).includes(preference.name) ? 'selected' : ''}`}
+                                    onClick={() => handlePreferenceSelect(item.id, preference.name)}
+                                >
+                                  {preference.name}
+                                </button>
+                              </li>
+                          ))}
+                        </ul>
+                      </>
+                  ):"No preferences available"}
+                </div>
+                <div className="action">
+                  <div className="price">
+                    <span>SAR {item.price}</span>
+                  </div>
+                  <button
+                      className={`btn ${addedItems.includes(item.id) ? 'added' : ''}`}
+                      onClick={() => handleAddToCart(item)}
+                      disabled={addedItems.includes(item.id)}
+                  >
+                    <FontAwesomeIcon icon={faCartShopping} className="cart-icon"/>
+                    <span className="text">{addedItems.includes(item.id) ? 'Added' : 'Add to Cart'}</span>
+                  </button>
+                </div>
               </div>
-            </div>
-        ))}
+          ))}
+        </div>
+        )}
       </div>
-      )}
     </div>
   );
 }

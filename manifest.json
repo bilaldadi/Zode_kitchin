@@ -1,22 +1,22 @@
 {
-    "name": "Your App Name",
-    "short_name": "App",
-    "description": "A description of your app",
+    "name": "Zode Kithcen",
+    "short_name": "Zode Kithcen",
+    "description": "An ordering app for Zode Kithcen",
     "icons": [
       {
-        "src": "/path/to/icons/android-chrome-192x192.png",
+        "src": "/favico.ico",
         "sizes": "192x192",
         "type": "image/png"
       },
       {
-        "src": "/path/to/icons/android-chrome-512x512.png",
+        "src": "/favico.ico",
         "sizes": "512x512",
         "type": "image/png"
       }
     ],
     "start_url": "/",
-    "background_color": "#ffffff",
-    "display": "standalone",
-    "theme_color": "#ffffff"
+    "background_color": "#04033f",
+    "display": "standalone"
+    
   }
   

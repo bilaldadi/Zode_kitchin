@@ -7,6 +7,8 @@ import { CartContext } from '../context/CartContext.js.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { Loading } from "./Loading.jsx";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function Fruits() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -26,6 +28,9 @@ export function Fruits() {
             const data = await getFruitsData();
             setfruitsData(data);
             setLoading(false);
+            if(data.length === 0) {
+                toast.error("Some error occurred, please try again later");
+            }
             // console.log("Fetched beverages data:", data);
         };
         fetchData();
@@ -77,65 +82,68 @@ export function Fruits() {
     }, []);
 
     return (
-        <div className="elements-container" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="300">
-            <h1>Fruits</h1>
-            <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            {loading ? (
-                <div className="bloading">
-                    <Loading />
-                    <Loading />
-                    <Loading />
-                    <Loading />
-                </div>
-                
-            ) : (
-
-            <div className="bCrad_contanier">
-                {filteredFruits.map((fruit) => (
-                    <div key={fruit.id} className="bcard">
-                        <div className="image_container">
-                            <img src={fruit.imgUrl} alt={fruit.name} />
-                        </div>
-                        <div className="title">
-                            <span>{fruit.name}</span>
-                        </div>
-                        <p className="product_description">{fruit.description}</p>
-                        <div className="size">
-                            {fruit.preferences && fruit.preferences.length > 0 && (
-                                <>
-                                    <span>Preferences</span>
-                                    <ul className="list-size">
-                                        {fruit.preferences.map((preference, index) => (
-                                            <li className="item-list" key={index}>
-                                                <button
-                                                    className={`item-list-button ${(selectedPreferences[fruit.id] || []).includes(preference.name) ? 'selected' : ''}`}
-                                                    onClick={() => handlePreferenceSelect(fruit.id, preference.name)}
-                                                >
-                                                    {preference.name}
-                                                </button>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </>
-                            )}
-                        </div>
-                        <div className="action">
-                            <div className="price">
-                                <span>SAR {fruit.price}</span>
-                            </div>
-                            <button
-                                className={`btn ${addedItems.includes(fruit.id) ? 'added' : ''}`}
-                                onClick={() => handleAddToCart(fruit)}
-                                disabled={addedItems.includes(fruit.id)}
-                            >
-                                <FontAwesomeIcon icon={faCartShopping} className="cart-icon" />
-                                <span className="text">{addedItems.includes(fruit.id) ? "Added" : "Add to Cart"}</span>
-                            </button>
-                        </div>
+        <div>
+           
+            <div className="elements-container" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="300">
+                <h1>Fruits</h1>
+                <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+                {loading ? (
+                    <div className="bloading">
+                        <Loading />
+                        <Loading />
+                        <Loading />
+                        <Loading />
                     </div>
-                ))}
+                    
+                ) : (
+
+                <div className="bCrad_contanier">
+                    {filteredFruits.map((fruit) => (
+                        <div key={fruit.id} className="bcard">
+                            <div className="image_container">
+                                <img src={fruit.imgUrl} alt={fruit.name} />
+                            </div>
+                            <div className="title">
+                                <span>{fruit.name}</span>
+                            </div>
+                            <p className="product_description">{fruit.description}</p>
+                            <div className="size">
+                                {fruit.preferences && fruit.preferences.length > 0 ? (
+                                    <>
+                                        <span>Preferences</span>
+                                        <ul className="list-size">
+                                            {fruit.preferences.map((preference, index) => (
+                                                <li className="item-list" key={index}>
+                                                    <button
+                                                        className={`item-list-button ${(selectedPreferences[fruit.id] || []).includes(preference.name) ? 'selected' : ''}`}
+                                                        onClick={() => handlePreferenceSelect(fruit.id, preference.name)}
+                                                    >
+                                                        {preference.name}
+                                                    </button>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </>
+                                ):"No preferences available"}
+                            </div>
+                            <div className="action">
+                                <div className="price">
+                                    <span>SAR {fruit.price}</span>
+                                </div>
+                                <button
+                                    className={`btn ${addedItems.includes(fruit.id) ? 'added' : ''}`}
+                                    onClick={() => handleAddToCart(fruit)}
+                                    disabled={addedItems.includes(fruit.id)}
+                                >
+                                    <FontAwesomeIcon icon={faCartShopping} className="cart-icon" />
+                                    <span className="text">{addedItems.includes(fruit.id) ? "Added" : "Add to Cart"}</span>
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                )}
             </div>
-            )}
         </div>
     );
 }

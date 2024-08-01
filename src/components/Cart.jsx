@@ -22,19 +22,28 @@ export function Cart() {
         removeFromCart(itemId, preference);
     };
 
+    // const handleCompleteOrder = () => {
+    //     // console.log('Order Completed');
+    //     navigate('/account', { state: { orderCompleted: true } });
+
+    //     setTimeout(() => {
+    //         navigate('/account', { state: { orderCompleted: false } });
+    //     }, 500);
+
+    //     // Clear cart items in state and local storage
+    //     setCartItems([]);
+    //     localStorage.removeItem('cartItems');
+    // };
+
     const handleCompleteOrder = () => {
-        // console.log('Order Completed');
         navigate('/account', { state: { orderCompleted: true } });
-
-        setTimeout(() => {
-            navigate('/account', { state: { orderCompleted: false } });
-        }, 500);
-
+    
         // Clear cart items in state and local storage
         setCartItems([]);
         localStorage.removeItem('cartItems');
     };
 
+    
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);

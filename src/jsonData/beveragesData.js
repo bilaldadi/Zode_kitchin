@@ -54,7 +54,7 @@ export const getBeverageData = async () => {
       }
     } else {
       // Non-Axios error
-      console.error("Non-Axios error occurred:", error);
+      console.error("Non-Axios error occurred:", error.message);
     }
 
     // You might want to throw the error here to let the caller handle it

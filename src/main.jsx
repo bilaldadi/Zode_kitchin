@@ -14,6 +14,7 @@ import { Account } from './components/Account.jsx';
 import { Login } from './components/Login.jsx';
 import { Fruits } from './components/Fruits.jsx';
 import { Desserts } from './components/Desserts.jsx';
+import {OperationsPage} from './components/Operations/OperationsPage.jsx';
 
 
 const MainLayout = () => (
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
             { path: "account", element: <Account /> },
             { path: "search", element: <AllItemsSearch /> },
             { path: "cart", element: <Cart /> },
+            { path: "operations", element: <OperationsPage /> },
             { path: "login", element: <Login /> },
         ],
     },
