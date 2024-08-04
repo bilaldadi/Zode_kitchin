@@ -42,7 +42,6 @@ export function OperationsPage() {
                 setLoading(false);
             }else if (Object.keys(userRoles).length === 0) {
                 setHasAccess(false);
-                
             }else{
                 setLoading(false);
             }
