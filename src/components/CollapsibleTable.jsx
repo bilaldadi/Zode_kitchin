@@ -62,7 +62,7 @@ const App = () => {
       data.push({
         key: i.toString(),
         date: '2014-12-24 23:12:00',
-        name: 'Apple from the farm',
+        name: 'Apple',
         // upgradeNum: 'Upgraded: 56',
       });
     }

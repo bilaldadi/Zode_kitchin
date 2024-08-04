@@ -11,17 +11,17 @@ export const AuthProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    // const token = localStorage.getItem('authToken');
-    // if (token) {
-    //   const isMyTokenExpired = isExpired(token);
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      const isMyTokenExpired = isExpired(token);
       
       // Check if the token is expired
-      // if (!isMyTokenExpired) {
+      if (!isMyTokenExpired) {
         setIsLoggedIn(true);
-    //   } else {
-    //     localStorage.removeItem('authToken');
-    //   }
-    // }
+      } else {
+        localStorage.removeItem('authToken');
+      }
+    }
   }, []);
 
   const getUserData = async () => {
