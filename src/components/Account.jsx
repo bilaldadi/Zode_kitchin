@@ -1,12 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
-import axios from "axios";
-import ApiUrl from './MainUrl';
 import { AuthContext } from '../context/AuthContext';
-import { toast,ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useLocation } from 'react-router-dom';
 import CollapsibleTable from './CollapsibleTable';
 import { useNavigate } from 'react-router-dom';
+import { LoadingSpinner } from './LoadingSpinner';
 
 
 export function Account() {
@@ -18,7 +17,7 @@ export function Account() {
 
     useEffect(() => {
         if (location.state && location.state.orderCompleted) {
-            console.log(location.state.orderCompleted);
+            // console.log(location.state.orderCompleted);
             // console.log('Order Completed state detected');
             toast.success('Order Received Successfully');
             // Reset orderCompleted state after toast is shown
@@ -40,12 +39,7 @@ export function Account() {
             <div>
             
             {isLoading ? (
-                <div style={{ margin: '10rem 0' }}>
-                    <div className="lds-ripple">
-                        <div></div>
-                        <div></div>
-                    </div>
-                </div>
+                <LoadingSpinner />
             ) : (
                 <div>
                      
