@@ -11,22 +11,15 @@ import { useNavigate } from 'react-router-dom';
 
 export function Account() {
     const [isLoading, setIsLoading] = useState(true);
-    const { isLoggedIn } = useContext(AuthContext);
+    const { isLoggedIn ,userData } = useContext(AuthContext);
     const location = useLocation();
-    const [userData, setUserData] = useState({});
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if (location.state && location.state.orderCompleted) {
-    //         console.log('Order Completed state detected');
-    //         toast.success('Order Received Successfully');
-    //     }
-    // }, [location.state]);
 
     useEffect(() => {
         if (location.state && location.state.orderCompleted) {
             console.log(location.state.orderCompleted);
-            console.log('Order Completed state detected');
+            // console.log('Order Completed state detected');
             toast.success('Order Received Successfully');
             // Reset orderCompleted state after toast is shown
             navigate('/account', { replace: true, state: { orderCompleted: false } });
@@ -35,28 +28,8 @@ export function Account() {
     
 
     useEffect(() => {
-        if (isLoggedIn) {
-            const getUserData = async () => {
-                const token = localStorage.getItem('authToken');
-                try {
-                    const res = await axios.get(`${ApiUrl}/api/v1/users/me`, {
-                        headers: {
-                            "Content-type": "application/json",
-                            "Authorization": `Bearer ${token}`,
-                            'Accept': '*/*',
-                            "ngrok-skip-browser-warning": "69420"
-                        }
-                    });
-                    setUserData(res.data.data);
-                    // console.log('User data:', res.data.data);
-                    setIsLoading(false); 
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
-                    setIsLoading(false); 
-                }
-            };
-
-            getUserData();
+        if(userData){
+            setIsLoading(false);
         }
     }, [isLoggedIn]);
 

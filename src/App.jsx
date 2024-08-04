@@ -55,7 +55,7 @@ function App({ children }) {
        <ThemeProvider theme={theme}>
           {isLoggedIn && <Navbar />}
           {isLoggedIn && <MobileNav />}
-          <ToastContainer />
+          <ToastContainer closeOnClick > </ToastContainer>
           {children}
           <Footer />
        </ThemeProvider>
