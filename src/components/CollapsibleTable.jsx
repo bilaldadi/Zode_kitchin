@@ -128,6 +128,7 @@ const App = () => {
   return (
     <>
       <Table
+        style={{backgroundColor: 'white'}}
         columns={columns}
         expandable={{
           expandedRowRender,
