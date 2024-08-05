@@ -1437,12 +1437,17 @@ h1 {
 
 @media (max-width: 768px) {
   :where(.css-dev-only-do-not-override-d2lrxs).ant-table-wrapper .ant-table-cell, :where(.css-dev-only-do-not-override-d2lrxs).ant-table-wrapper .ant-table-thead>tr>th, :where(.css-dev-only-do-not-override-d2lrxs).ant-table-wrapper .ant-table-tbody>tr>th, :where(.css-dev-only-do-not-override-d2lrxs).ant-table-wrapper .ant-table-tbody>tr>td, :where(.css-dev-only-do-not-override-d2lrxs).ant-table-wrapper tfoot>tr>th, :where(.css-dev-only-do-not-override-d2lrxs).ant-table-wrapper tfoot>tr>td {
-    padding: 6px;
+    padding: 3px;
   }
 
   :where(.css-dev-only-do-not-override-d2lrxs).ant-table-wrapper .ant-table-tbody >tr >td >.ant-table-wrapper:only-child .ant-table {
     margin-block: 0;
     margin-inline: 0;
+  }
+  :where(.css-dev-only-do-not-override-d2lrxs).ant-badge{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
