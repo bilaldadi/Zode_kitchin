@@ -222,6 +222,7 @@ export function Account() {
                                             <div className='order-item-details'>
                                                 <p className='order-item-name'>Name: <span>coffee</span></p>
                                                 <p className='order-item-other'>Quantity: <span>2</span></p>
+                                                <p className='order-item-other'><span>Sugar , Milk</span></p>
                                                 <p className='order-item-other'><span>Processing...</span></p>
                                             </div>
                                         </div>
@@ -230,6 +231,7 @@ export function Account() {
                                             <div className='order-item-details'>
                                                 <p className='order-item-name'>Name: <span>coffee</span></p>
                                                 <p className='order-item-other'>Quantity: <span>2</span></p>
+                                                <p className='order-item-other'><span>Milk</span></p>
                                                 <p className='order-item-other'><span>Processing...</span></p>
                                             </div>
                                         </div>
