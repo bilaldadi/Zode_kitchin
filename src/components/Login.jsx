@@ -33,7 +33,7 @@ export function Login(){
           localStorage.setItem('authToken', token);
     
           // Optionally set the token in axios headers for future requests
-          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+          // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
           setIsLoggedIn(true);
           navigate('/');

@@ -1,14 +1,13 @@
-import { useState, useEffect, useContext  } from 'react'
-import './App.css'
+import { useState, useEffect, useContext } from 'react';
+import './App.css';
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
-import {MobileNav} from "./components/MobileNav.jsx";
-import {useNavigate} from 'react-router-dom';
+import { MobileNav } from "./components/MobileNav.jsx";
+import { useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext.jsx';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { createTheme , ThemeProvider } from '@mui/material/styles';
-
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
   typography: {
@@ -22,15 +21,12 @@ const theme = createTheme({
   }
 });
 
-
-
 // eslint-disable-next-line react/prop-types
 function App({ children }) {
-
-  const {isLoggedIn} = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (isLoading) {
@@ -42,27 +38,24 @@ function App({ children }) {
     }
   }, [isLoading, navigate]);
 
-
   if (isLoading) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
   }
-  
+
+  const hideNavbarAndFooter = location.pathname === '/operations';
 
 
-  
   return (
     <>
-       <ThemeProvider theme={theme}>
-          {isLoggedIn && <Navbar />}
-          {isLoggedIn && <MobileNav />}
-          <ToastContainer closeOnClick > </ToastContainer>
-          {children}
-          <Footer />
-       </ThemeProvider>
-
+      <ThemeProvider theme={theme}>
+        {isLoggedIn && !hideNavbarAndFooter && <Navbar />}
+        {isLoggedIn && !hideNavbarAndFooter && <MobileNav />}
+        <ToastContainer closeOnClick />
+        {children}
+        {!hideNavbarAndFooter && <Footer />}
+      </ThemeProvider>
     </>
-  )
-
+  );
 }
 
-export default App
+export default App;

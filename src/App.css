@@ -1435,27 +1435,11 @@ h1 {
   font-family: 'Poppins', sans-serif;
 }
 
-@media (max-width: 768px) {
-  :where(.css-dev-only-do-not-override-d2lrxs).ant-table-wrapper .ant-table-cell, 
-  :where(.css-dev-only-do-not-override-d2lrxs).ant-table-wrapper .ant-table-thead>tr>th, 
-  :where(.css-dev-only-do-not-override-d2lrxs).ant-table-wrapper .ant-table-tbody>tr>th, 
-  :where(.css-dev-only-do-not-override-d2lrxs).ant-table-wrapper .ant-table-tbody>tr>td, 
-  :where(.css-dev-only-do-not-override-d2lrxs).ant-table-wrapper tfoot>tr>th, 
-  :where(.css-dev-only-do-not-override-d2lrxs).ant-table-wrapper tfoot>tr>td {
-    padding: 3px !important;
-  }
-
-  :where(.css-dev-only-do-not-override-d2lrxs).ant-table-wrapper .ant-table-tbody >tr >td >.ant-table-wrapper:only-child .ant-table {
-    margin-block: 0 !important;
-    margin-inline: 0 !important;
-  }
-  
-  :where(.css-dev-only-do-not-override-d2lrxs).ant-badge {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
+.user-table-order{
+  background-color: whitesmoke;
+  border-radius: 15px;
 }
+
 
 
 

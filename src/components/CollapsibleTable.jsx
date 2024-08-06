@@ -103,7 +103,7 @@ const App = () => {
     {
       title: 'Status',
       key: 'state',
-      render: () => <Badge status="processing" text="processing..." />,
+      render: () => <Badge status="processing" text="Processing..." />,
     },
     // {
     //   title: 'Action',
@@ -126,9 +126,10 @@ const App = () => {
   }
   
   return (
-    <>
+    <div>
+    
       <Table
-        style={{backgroundColor: 'white'}}
+        className='user-table-order'
         columns={columns}
         expandable={{
           expandedRowRender,
@@ -137,7 +138,7 @@ const App = () => {
         dataSource={data}
       />
      
-    </>
+    </div>
   );
 };
 export default App;

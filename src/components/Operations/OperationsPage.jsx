@@ -21,8 +21,8 @@ export function OperationsPage() {
                 return acc;
             }, {});
             setUserRoles(roles); 
-            console.log("User roles:", roles);
-            setLoading(true);
+            // console.log("User roles:", roles);
+            // setLoading(true);
         } 
         
     }, [userData]);
@@ -37,6 +37,7 @@ export function OperationsPage() {
                 
                 if (data.length === 0) {
                     toast.info("No Orders found");
+                    setLoading(false);
                 }
                 console.log("Fetched beverages data:", data[5].status);
                 setLoading(false);
@@ -50,7 +51,7 @@ export function OperationsPage() {
         
     }, [userRoles]);
 
-    console.log("User roles:", userRoles);
+    // console.log("User roles:", userRoles);
     const roles = Object.values(userRoles);
 
     if(loading){
