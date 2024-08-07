@@ -690,6 +690,10 @@ body.no-scroll {
       
     }
 
+    .btn-pagination{
+      width: 100%;
+    }
+
     .btn .cart-icon {
         transition: transform 0.3s ease-in-out;
     }
@@ -1520,13 +1524,13 @@ h1 {
 
 .order-details-list{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
   padding-top: 1.5rem;
   border-top: 1px solid #eee;
   transition: background-color 0.3s ease-in-out;
   font-size: 1.2rem;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .order-details-item{
@@ -1559,6 +1563,39 @@ h1 {
 .order-item-details p{
   margin: 0;
   padding: 0;
+}
+
+.pagination{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.pagination li{
+  list-style: none;
+  cursor: pointer;
+}
+
+.page-link{
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.21);
+  border-radius: 26px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.pagination .page-item.active .page-link {
+  background-color:#03d2b8 ; /* Change this to your desired color */
+  color: white;
+  
 }
 
 
