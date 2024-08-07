@@ -46,11 +46,11 @@ export function Beverages() {
     const handlePreferenceSelect = (beverageId, preference) => {
         setSelectedPreferences((prevPreferences) => {
             const currentPreferences = prevPreferences[beverageId] || [];
-            const isSelected = currentPreferences.includes(preference);
+            const isSelected = currentPreferences.some(p => p.id === preference.id);
             return {
                 ...prevPreferences,
                 [beverageId]: isSelected
-                    ? currentPreferences.filter((item) => item !== preference)
+                    ? currentPreferences.filter((item) => item.id !== preference.id)
                     : [...currentPreferences, preference],
             };
         });
@@ -60,7 +60,7 @@ export function Beverages() {
         const preferences = selectedPreferences[beverage.id] || [];
         const itemToAdd = {
             ...beverage,
-            preferences: preferences.join(', '), // Combine preferences into a single string or array
+            preferences: preferences.map(p => ({ id: p.id, name: p.name })), // Include both preference id and name
         };
         addToCart(itemToAdd);
 
@@ -77,6 +77,8 @@ export function Beverages() {
             );
         }, 1000);
     };
+
+    // console.log("Selected Preferences:", selectedPreferences);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -113,11 +115,11 @@ export function Beverages() {
                                     <>
                                         <span>Preferences</span>
                                         <ul className="list-size">
-                                            {beverage.preferences.map((preference, index) => (
-                                                <li className="item-list" key={index}>
+                                            {beverage.preferences.map((preference) => (
+                                                <li className="item-list" key={preference.id}>
                                                     <button
-                                                        className={`item-list-button ${(selectedPreferences[beverage.id] || []).includes(preference.name) ? 'selected' : ''}`}
-                                                        onClick={() => handlePreferenceSelect(beverage.id, preference.name)}
+                                                        className={`item-list-button ${(selectedPreferences[beverage.id] || []).some(p => p.id === preference.id) ? 'selected' : ''}`}
+                                                        onClick={() => handlePreferenceSelect(beverage.id, preference)}
                                                     >
                                                         {preference.name}
                                                     </button>
@@ -149,4 +151,3 @@ export function Beverages() {
         
     );
 }
-

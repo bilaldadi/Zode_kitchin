@@ -41,15 +41,14 @@ export function Snack() {
     );
 
     // console.log("Filtered Beverages:", filteredBeverages);
-
     const handlePreferenceSelect = (snackId, preference) => {
         setSelectedPreferences((prevPreferences) => {
             const currentPreferences = prevPreferences[snackId] || [];
-            const isSelected = currentPreferences.includes(preference);
+            const isSelected = currentPreferences.some(p => p.id === preference.id);
             return {
                 ...prevPreferences,
                 [snackId]: isSelected
-                    ? currentPreferences.filter((item) => item !== preference)
+                    ? currentPreferences.filter((item) => item.id !== preference.id)
                     : [...currentPreferences, preference],
             };
         });
@@ -59,7 +58,7 @@ export function Snack() {
         const preferences = selectedPreferences[snack.id] || [];
         const itemToAdd = {
             ...snack,
-            preferences: preferences.join(', '), // Combine preferences into a single string or array
+            preferences: preferences.map(p => ({ id: p.id, name: p.name })), // Include both preference id and name
         };
         addToCart(itemToAdd);
 
@@ -115,8 +114,8 @@ export function Snack() {
                                             {snack.preferences.map((preference, index) => (
                                                 <li className="item-list" key={index}>
                                                     <button
-                                                        className={`item-list-button ${(selectedPreferences[snack.id] || []).includes(preference.name) ? 'selected' : ''}`}
-                                                        onClick={() => handlePreferenceSelect(snack.id, preference.name)}
+                                                        className={`item-list-button ${(selectedPreferences[snack.id] || []).some(p => p.id === preference.id) ? 'selected' : ''}`}
+                                                        onClick={() => handlePreferenceSelect(snack.id, preference)}
                                                     >
                                                         {preference.name}
                                                     </button>

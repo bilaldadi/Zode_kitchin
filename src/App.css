@@ -1536,6 +1536,8 @@ h1 {
 .order-details-item{
   display: flex;
   gap: 1rem;
+  align-items: flex-start;
+  width: 18rem;
   /* padding-right: 1rem;
   border-right: whi 1px solid; */
 }

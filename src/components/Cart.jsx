@@ -5,45 +5,69 @@ import 'aos/dist/aos.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import ApiUrl from "./MainUrl.js";
+import { AuthContext } from "../context/AuthContext.jsx";
 
 export function Cart() {
     const { cartItems, updateQuantity, removeFromCart, totalItems, setCartItems } = useContext(CartContext);
     const navigate = useNavigate();
+    const { userData } = useContext(AuthContext);
 
     useEffect(() => {
         AOS.init();
     }, []);
 
-    const handleQuantityChange = (itemId, preference, amount) => {
-        updateQuantity(itemId, preference, amount);
+    const handleQuantityChange = (itemId, preferences, amount) => {
+        updateQuantity(itemId, preferences, amount);
     };
 
-    const handleRemoveItem = (itemId, preference) => {
-        removeFromCart(itemId, preference);
+    const handleRemoveItem = (itemId, preferences) => {
+        removeFromCart(itemId, preferences);
     };
 
-    // const handleCompleteOrder = () => {
-    //     // console.log('Order Completed');
-    //     navigate('/account', { state: { orderCompleted: true } });
-
-    //     setTimeout(() => {
-    //         navigate('/account', { state: { orderCompleted: false } });
-    //     }, 500);
-
-    //     // Clear cart items in state and local storage
-    //     setCartItems([]);
-    //     localStorage.removeItem('cartItems');
-    // };
-
-    const handleCompleteOrder = () => {
-        navigate('/account', { state: { orderCompleted: true } });
+    const submitOrder = async () => {
+        const token = localStorage.getItem('authToken');
+        const order = {
+            "roomId": userData.room.id,
+            "items": cartItems.map((item) => {
+                const itemData = {
+                    id: item.id,
+                    quantity: item.quantity,
+                };
     
+                if (item.preferences && item.preferences.length > 0) {
+                    itemData.preferences = item.preferences.map(p => p.id);
+                }
+    
+                return itemData;
+            }),
+        };
+
+        try {
+            await axios.post(`${ApiUrl}/api/v1/orders`, order, {
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                    "Accept": "*/*",
+                    "ngrok-skip-browser-warning": "69420",
+                },
+            });
+        } catch (error) {
+            console.error("Failed to submit order:", error);
+        }
+    };
+
+    const handleCompleteOrder = async () => {
+        await submitOrder();
+
+        navigate('/account', { state: { orderCompleted: true } });
+
         // Clear cart items in state and local storage
         setCartItems([]);
         localStorage.removeItem('cartItems');
     };
 
-    
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -70,7 +94,9 @@ export function Cart() {
                                             <img className="item-image" src={item.imgUrl} alt={item.name} />
                                             <p className="item-name">{item.name}</p>
                                             <p className="item-price">SAR {item.price}</p>
-                                            <p className="item-preference">Preferences: {item.preferences}</p>
+                                            <p className="item-preference">
+                                                Preferences: { item.preferences && item.preferences.length > 0 ? item.preferences.map(p => `${p.name}`).join(', ') : 'No Preferences' }
+                                            </p>
                                         </div>
                                         <div className="item-quantity">
                                             <button
@@ -101,7 +127,6 @@ export function Cart() {
                                 <p className="total-price">
                                     SAR {(cartItems ?? []).reduce((total, item) => total + item.price * item.quantity, 0)}
                                 </p>
-
                             </div>
                             <button className="checkout-button" onClick={handleCompleteOrder}>Send Order</button>
                         </>

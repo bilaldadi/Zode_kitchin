@@ -48,22 +48,23 @@ export function AllItemsSearch() {
 
   const handlePreferenceSelect = (ItemId, preference) => {
     setSelectedPreferences((prevPreferences) => {
-      const currentPreferences = prevPreferences[ItemId] || [];
-      const isSelected = currentPreferences.includes(preference);
-      return {
-        ...prevPreferences,
-        [ItemId]: isSelected
-            ? currentPreferences.filter((item) => item !== preference)
-            : [...currentPreferences, preference],
-      };
+        const currentPreferences = prevPreferences[ItemId] || [];
+        const isSelected = currentPreferences.some(p => p.id === preference.id);
+        return {
+            ...prevPreferences,
+            [ItemId]: isSelected
+                ? currentPreferences.filter((item) => item.id !== preference.id)
+                : [...currentPreferences, preference],
+        };
     });
-  };
+};
+
 
   const handleAddToCart = (item) => {
     const preferences = selectedPreferences[item.id] || [];
     const itemToAdd = {
       ...item,
-      preferences: preferences.join(', '), // Combine preferences into a single string or array
+      preferences: preferences.map(p => ({ id: p.id, name: p.name })), // Include both preference id and name
     };
     addToCart(itemToAdd);
 
@@ -137,8 +138,8 @@ export function AllItemsSearch() {
                           {item.preferences.map((preference, index) => (
                               <li className="item-list" key={index}>
                                 <button
-                                    className={`item-list-button ${(selectedPreferences[item.id] || []).includes(preference.name) ? 'selected' : ''}`}
-                                    onClick={() => handlePreferenceSelect(item.id, preference.name)}
+                                    className={`item-list-button ${(selectedPreferences[item.id] || []).some(p => p.id === preference.id) ? 'selected' : ''}`}
+                                    onClick={() => handlePreferenceSelect(item.id, preference)}
                                 >
                                   {preference.name}
                                 </button>
@@ -169,3 +170,5 @@ export function AllItemsSearch() {
     </div>
   );
 }
+
+

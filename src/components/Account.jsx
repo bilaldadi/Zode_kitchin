@@ -18,6 +18,7 @@ export function Account() {
 
     useEffect(() => {
         if (location.state && location.state.orderCompleted) {
+            console.log(location.state.orderCompleted);
             toast.success('Order Received Successfully');
             navigate('/account', { replace: true, state: { orderCompleted: false } });
         }
@@ -81,7 +82,7 @@ export function Account() {
                                     <h3>Order #{order.id}</h3>
                                     <p>Order Date: {order.createdAt}</p>
                                     <p>Quantity:&nbsp; {order.quantity}</p>
-                                    <p>Room#:&nbsp; {order.room.name}</p>
+                                    <p>{order.room.name}</p>
                                     <p>Status: &nbsp; <span style={{ color: order.status === 'DONE' ? '#0BDA51' : (order.status === 'PROCESSING' ? 'orange' : 'white') }}>{order.status}</span></p>
                                     <div className='order-item-actions'>
                                         <button className='btn btn-center' onClick={() => toggleOrderDetails(order.id)}>
@@ -95,12 +96,12 @@ export function Account() {
                                         <div className='order-details-list'>
                                             {order.orderItems.map((item) => (
                                                 <div key={item.id} className='order-details-item'>
-                                                    <img className='order-item-image' src='/1.jpg' alt='product' />
+                                                    <img className='order-item-image' src={item.item.imgUrl} alt='product' />
                                                     <div className='order-item-details'>
-                                                        <p className='order-item-name'>Name: <span>Coffee</span></p>
+                                                        <p className='order-item-name'><span>{item.item.name}</span></p>
                                                         <p className='order-item-other'>Quantity: <span>{item.quantity}</span></p>
                                                         {item.orderItemPreferences.length > 0 ? (
-                                                            <p className='order-item-other'><span>{item.orderItemPreferences.map((pref) =>  pref.preference.name).join(" ")}</span></p>
+                                                            <p className='order-item-other'><span>{item.orderItemPreferences.map((pref) =>  pref.preference.name).join(" ,")}</span></p>
                                                         ) : null}
                                                         {item.status ? (
                                                             <p className='order-item-other'><span style={{ color: item.status === 'DONE' ? '#0BDA51' : (item.status === 'PROCESSING' ? 'orange' : (item.status === 'NOT_AVAILABLE') ? 'red' : 'white')}}>{item.status}</span></p>
