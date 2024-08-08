@@ -937,14 +937,17 @@ h1 {
   flex-direction: row;
 }
 
-
-
 .item-image{
   width: 70px;
   height: 40px;
   object-fit: cover;
   border-radius: 1em;
 
+}
+
+.item-preference{
+  font-size: small;
+  color: #888;
 }
 
 @media (max-width: 1128px) {

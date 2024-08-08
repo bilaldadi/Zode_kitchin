@@ -125,9 +125,9 @@ export function Cart() {
                                         <div className="item-details">
                                             <img className="item-image" src={item.imgUrl} alt={item.name} />
                                             <p className="item-name">{item.name}</p>
-                                            <p className="item-price">SAR {item.price}</p>
+                                            {/* <p className="item-price">SAR {item.price}</p> */}
                                             <p className="item-preference">
-                                                Preferences: { item.preferences && item.preferences.length > 0 ? item.preferences.map(p => `${p.name}`).join(', ') : 'No Preferences' }
+                                                { item.preferences && item.preferences.length > 0 ? item.preferences.map(p => `${p.name}`).join(', ') : 'No Preferences' }
                                             </p>
                                         </div>
                                         <div className="item-quantity">
