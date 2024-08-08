@@ -1129,7 +1129,7 @@ h1 {
 .cart-summary select {
   padding: 8px 12px;
   font-size: 14px;
-  border-radius: 3px;
+  border-radius: 25px;
   border: 2px solid #007bff;
   background-color: #fff;
   color: #333;
@@ -1150,7 +1150,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 0.25rem;
 }
 
 .total-label {
