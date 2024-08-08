@@ -1711,6 +1711,7 @@ h1 {
 .opertaions-intro{
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
   margin-top: 1.5rem;
@@ -1737,6 +1738,15 @@ h1 {
   -webkit-backdrop-filter: blur(20px);
   padding: 20px;
   margin-bottom: 20px;
+}
+
+.order-card-ff{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: white 1px solid;
 }
 
 .order-status-btns{

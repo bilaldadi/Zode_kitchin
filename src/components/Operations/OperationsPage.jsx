@@ -197,14 +197,18 @@ export function OperationsPage() {
                     {ordersData.length === 0 && <h2>No orders found</h2>}
                     {ordersData.map(order => (
                         <div key={order.id} className="order-card">
-                            <h3>Order #{order.id}</h3>
-                            {/* <p>Status: {order.status}</p> */}
-                            <p style={{fontWeight : "800"}} >{order.room.name}</p>
-                            <div className="order-status-btns"  >
-                                <button className="operations-btn-done" onClick={() => updateOrderStatus(order.id, 'DONE')}>Done</button>
-                                {/* <button className="operations-btn-proccessing" onClick={() => updateOrderStatus(order.id, 'PROCESSING')}>Processing</button> */}
+                            <div className="order-card-ff" >
+                                <h3>Order #{order.id}</h3>
+                                {/* <p>Status: {order.status}</p> */}
+                                <p style={{fontWeight : "800"}} >{order.room.name}</p>
+                                <div className="order-status-btns"  >
+                                    <button className="operations-btn-done" onClick={() => updateOrderStatus(order.id, 'DONE')}>Done</button>
+                                    {/* <button className="operations-btn-proccessing" onClick={() => updateOrderStatus(order.id, 'PROCESSING')}>Processing</button> */}
+                                </div>
                             </div>
+                            <h3>Order Items:</h3>
                             <div className="order-items">
+                                
                                 {order.orderItems.map(item => (
                                     <div key={item.id} className="order-item">
                                         {item.item.imgUrl && <img className="operations-oreder-img" src={item.item.imgUrl} alt={item.item.name} />}
@@ -235,8 +239,9 @@ export function OperationsPage() {
         );
     } else {
         return (
-            <div>
-                Access Denied <a href="/">Go to home page</a>
+            <div style={{ display:'flex', flexDirection : "column" , alignItems:"center" }}>
+                <img style={{width : "12rem" , marginBottom:"20rem" }} src="/zode_logo.png" alt="Zode logo" />
+                <h2>Access Denied <a href="/">Go to home page</a></h2>
             </div>
         );
     }
