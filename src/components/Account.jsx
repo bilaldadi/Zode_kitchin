@@ -132,40 +132,75 @@ export function Account() {
     );
 }
 
+
 function Pagination({ ordersPerPage, totalOrders, paginate, currentPage }) {
     const pageNumbers = [];
+    const maxPagesToShow = 2; // Maximum number of page buttons to show
 
     for (let i = 1; i <= Math.ceil(totalOrders / ordersPerPage); i++) {
         pageNumbers.push(i);
     }
 
+    const startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+    const endPage = Math.min(startPage + maxPagesToShow - 1, pageNumbers.length);
+
+    const visiblePages = pageNumbers.slice(startPage - 1, endPage);
+
     return (
-        
         <nav>
             {pageNumbers.length > 1 && (
                 <ul className='pagination'>
                     <li>
-                        <button onClick={() => paginate(currentPage - 1 > 0 ? currentPage - 1 : currentPage)} className='page-link btn btn-center btn-pagination'>
+                        <button 
+                            onClick={() => paginate(currentPage - 1 > 0 ? currentPage - 1 : currentPage)} 
+                            className='page-link btn btn-center btn-pagination'
+                            disabled={currentPage === 1}
+                        >
                             &#x2190;
                         </button>
                     </li>
-                    {pageNumbers.map(number => (
+
+                    {startPage > 1 && (
+                        <li className='page-item'>
+                            <button onClick={() => paginate(1)} className='page-link'>1</button>
+                        </li>
+                    )}
+
+                    {startPage > 2 && <li className='page-item'>...</li>}
+
+                    {visiblePages.map(number => (
                         <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
                             <button onClick={() => paginate(number)} className='page-link'>
                                 {number}
                             </button>
                         </li>
                     ))}
+
+                    {endPage < pageNumbers.length - 1 && <li className='page-item'>...</li>}
+
+                    {endPage < pageNumbers.length && (
+                        <li className='page-item'>
+                            <button onClick={() => paginate(pageNumbers.length)} className='page-link'>
+                                {pageNumbers.length}
+                            </button>
+                        </li>
+                    )}
+
                     <li>
-                        <button onClick={() => paginate(currentPage + 1 <= pageNumbers.length ? currentPage + 1 : currentPage)} className='page-link btn btn-center btn-pagination'>
+                        <button 
+                            onClick={() => paginate(currentPage + 1 <= pageNumbers.length ? currentPage + 1 : currentPage)} 
+                            className='page-link btn btn-center btn-pagination'
+                            disabled={currentPage === pageNumbers.length}
+                        >
                             &#x2192;
                         </button>
                     </li>
                 </ul>
             )}
         </nav>
-        
     );
 }
+
+
 
 export default Pagination;
