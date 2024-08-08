@@ -73,7 +73,11 @@ export function Account() {
                             </span>
                         </h1>
                     </div>
-                    <h2 className='order-h2'>My Orders</h2>
+                    {currentOrders.length > 0 ? (
+                        <h2 className='order-h2'>My Orders</h2>
+                        ) : 
+                        <h2 className='order-h2'>You have no orders</h2>
+                    }
 
                     {currentOrders.map((order) => (
                         <div key={order.id} className='my-orders'>
@@ -136,27 +140,31 @@ function Pagination({ ordersPerPage, totalOrders, paginate, currentPage }) {
     }
 
     return (
+        
         <nav>
-            <ul className='pagination'>
-                <li>
-                    <button onClick={() => paginate(currentPage - 1 > 0 ? currentPage - 1 : currentPage)} className='page-link btn btn-center btn-pagination'>
-                        &#x2190;
-                    </button>
-                </li>
-                {pageNumbers.map(number => (
-                    <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
-                        <button onClick={() => paginate(number)} className='page-link'>
-                            {number}
+            {pageNumbers.length > 1 && (
+                <ul className='pagination'>
+                    <li>
+                        <button onClick={() => paginate(currentPage - 1 > 0 ? currentPage - 1 : currentPage)} className='page-link btn btn-center btn-pagination'>
+                            &#x2190;
                         </button>
                     </li>
-                ))}
-                <li>
-                    <button onClick={() => paginate(currentPage + 1 <= pageNumbers.length ? currentPage + 1 : currentPage)} className='page-link btn btn-center btn-pagination'>
-                        &#x2192;
-                    </button>
-                </li>
-            </ul>
+                    {pageNumbers.map(number => (
+                        <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
+                            <button onClick={() => paginate(number)} className='page-link'>
+                                {number}
+                            </button>
+                        </li>
+                    ))}
+                    <li>
+                        <button onClick={() => paginate(currentPage + 1 <= pageNumbers.length ? currentPage + 1 : currentPage)} className='page-link btn btn-center btn-pagination'>
+                            &#x2192;
+                        </button>
+                    </li>
+                </ul>
+            )}
         </nav>
+        
     );
 }
 

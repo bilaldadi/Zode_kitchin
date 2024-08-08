@@ -1048,6 +1048,111 @@ h1 {
   margin-bottom: 20px;
 }
 
+/* Container for the room change option */
+.cart-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* From Uiverse.io by PriyanshuGupta28 */ 
+.checkbox-wrapper:hover .check {
+  stroke-dashoffset: 0;
+}
+
+.checkbox-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+}
+
+.checkbox-wrapper .background {
+  fill: #03d2b8;
+  transition: ease all 0.6s;
+  -webkit-transition: ease all 0.6s;
+}
+
+.checkbox-wrapper .stroke {
+  fill: none;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  stroke-width: 2px;
+  stroke-dashoffset: 100;
+  stroke-dasharray: 100;
+  transition: ease all 0.6s;
+  -webkit-transition: ease all 0.6s;
+}
+
+.checkbox-wrapper .check {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2px;
+  stroke-dashoffset: 22;
+  stroke-dasharray: 22;
+  transition: ease all 0.6s;
+  -webkit-transition: ease all 0.6s;
+}
+
+.checkbox-wrapper input[type=checkbox] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  margin: 0;
+  opacity: 0;
+  -appearance: none;
+  -webkit-appearance: none;
+}
+
+.checkbox-wrapper input[type=checkbox]:hover {
+  cursor: pointer;
+}
+
+.checkbox-wrapper input[type=checkbox]:checked + svg .background {
+  fill: #421c64;
+}
+
+.checkbox-wrapper input[type=checkbox]:checked + svg .stroke {
+  stroke-dashoffset: 0;
+}
+
+.checkbox-wrapper input[type=checkbox]:checked + svg .check {
+  stroke-dashoffset: 0;
+}
+
+/* Custom dropdown styling */
+.cart-summary select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 3px;
+  border: 2px solid #007bff;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  outline: none;
+}
+
+.cart-summary select:focus {
+  border-color: #0056b3;
+}
+
+/* .cart-summary label {
+  font-size: 14px;
+  color: #333;
+} */
+
+.cart-sum-sum{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
 .total-label {
   font-weight: bold;
 }
@@ -1111,6 +1216,7 @@ h1 {
   outline: none;
   border-color: #03d2b8;
 }
+
 
 /* Responsive styling */
 @media (max-width: 768px) {
@@ -1599,6 +1705,112 @@ h1 {
   color: white;
   
 }
+
+/* operations page styling  */
+
+.opertaions-intro{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.zode-logo-oper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12rem;
+  height: auto;
+  vertical-align: middle;
+}
+
+
+.order-card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.21);
+  border-radius: 26px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.order-status-btns{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.order-card h3 {
+  margin-top: 0;
+}
+
+.order-items {
+  margin-top: 10px;
+}
+
+.order-item {
+  border-top: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.order-item:first-child {
+  border-top: none;
+}
+
+.order-item p {
+  margin: 5px 0;
+}
+
+.operations-oreder-img{
+  width: 100px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 1em;
+}
+
+.operations-pref{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.operations-btn-done{
+  background-color: green;
+  width: 8rem;
+  font-size: 1.2rem;
+  color: white;
+  padding: 5px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.operations-btn-done:hover {
+  transform: scale(1.030);
+}
+
+.operations-btn-out{
+  background-color: red;
+  width: 8rem;
+  font-size: 1.2rem;
+  color: white;
+  padding: 5px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.operations-btn-out:hover {
+  transform: scale(1.030);
+}
+
 
 
 

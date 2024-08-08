@@ -99,7 +99,7 @@ export function CartProvider({ children }) {
         });
     };
 
-    console.log(cartItems);
+    // console.log(cartItems);
 
     const updateQuantity = (itemId, preferences, quantity) => {
         setCartItems((prevItems) =>
