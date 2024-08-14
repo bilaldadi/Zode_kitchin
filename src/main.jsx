@@ -15,6 +15,8 @@ import { Login } from './components/Login.jsx';
 import { Fruits } from './components/Fruits.jsx';
 import { Desserts } from './components/Desserts.jsx';
 import {OperationsPage} from './components/Operations/OperationsPage.jsx';
+import { SignUp } from './components/SignUp.jsx';
+import { ForgotPassword } from './components/ForgotPassword.jsx';
 
 
 const MainLayout = () => (
@@ -38,6 +40,8 @@ const router = createBrowserRouter([
             { path: "cart", element: <Cart /> },
             { path: "operations", element: <OperationsPage /> },
             { path: "login", element: <Login /> },
+            { path: "signup", element: <SignUp/> },
+            { path: "resetpassword", element: <ForgotPassword /> },
         ],
     },
 ]);

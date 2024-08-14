@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import { Link } from "react-router-dom";
 
 export function Login(){
 
@@ -105,32 +106,16 @@ export function Login(){
           </span>
         </div>
       </div>
-          {/* <div className="form-group">
-            <label htmlFor="office">Office Number:</label>
-            <select
-              id="office"
-              name="office"
-              value={office}
-              onChange={(e) => setOffice(e.target.value)}
-            >
-              <option value="">Select Office</option>
-              <option value="01">01 - CEO</option>
-              <option value="02">02 - CFO</option>
-              <option value="03">03 - COO</option>
-              <option value="04">04 - CTO</option>
-              <option value="05">05 - IT</option>
-              <option value="06">06 - Finance</option>
-              <option value="07">07 - Meeting Room</option>
-              <option value="08">08 - Supply Chain</option>
-              <option value="09">09 - Commercial</option>
-              <option value="10">10 - HR</option>
-              <option value="11">11 - Test</option>
-              <option value="12">12 - Test</option>
-            </select>
-          </div> */}
           <div className="login-btn-container">
             <button type="submit" className="login-btn">Login</button>
-            
+          </div>
+          <div className='under-login' >
+            <Link to='/signup' style={{textDecoration: 'none' , color:'whitesmoke'}}>
+              <a>Dont have account?</a>
+            </Link>
+            <Link to='/resetpassword' style={{textDecoration: 'none', color:'whitesmoke'}}>
+              <p>Forgot Password?</p>
+            </Link>
           </div>
         </form>
       </div>

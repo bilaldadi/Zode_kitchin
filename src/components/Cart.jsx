@@ -158,7 +158,7 @@ export function Cart() {
                             <div className="cart-summary">
                                 <div className="cart-sum-sum" >
                                   
-                                    <div class="checkbox-wrapper">
+                                    <div className="checkbox-wrapper">
                                     <input 
                                         type="checkbox" 
                                         id="room" 
@@ -168,9 +168,9 @@ export function Cart() {
                                         onChange={() => setShowRoomDropdown(!showRoomDropdown)}
                                     />
                                     <svg viewBox="0 0 35.6 35.6">
-                                        <circle class="background" cx="17.8" cy="17.8" r="17.8"></circle>
-                                        <circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
-                                        <polyline class="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
+                                        <circle className="background" cx="17.8" cy="17.8" r="17.8"></circle>
+                                        <circle className="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
+                                        <polyline className="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
                                     </svg>
                                     </div>
                                     <label htmlFor="room">Change Room</label>
