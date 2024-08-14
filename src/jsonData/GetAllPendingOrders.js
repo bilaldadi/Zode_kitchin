@@ -3,14 +3,14 @@ import ApiUrl from "../components/MainUrl.js";
 import { handleUnauthorized } from "../utils/auth.js";
 
 
-export const getUserOrder = async () => {
+export const getAllPendingOrders = async () => {
   try {
     const token = localStorage.getItem("authToken");
     if (!token) {
       throw new Error("No authentication token found");
     }
 
-    const res = await axios.get(`${ApiUrl}/api/v1/orders/today`, {
+    const res = await axios.get(`${ApiUrl}/api/v1/orders/operations`, {
       headers: {
         "Content-type": "application/json",
         "Authorization": `Bearer ${token}`,
