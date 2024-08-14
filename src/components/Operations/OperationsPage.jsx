@@ -16,6 +16,7 @@ export function OperationsPage() {
     const [hasAccess, setHasAccess] = useState(false);
     const [updatedStatuses, setUpdatedStatuses] = useState({});
 
+
     useEffect(() => {
         if (userData && userData.authorities) {
             const roles = userData.authorities.reduce((acc, authority) => {
@@ -46,8 +47,24 @@ export function OperationsPage() {
                 setLoading(false);
             }
         };
-        fetchData();
+    
+        fetchData(); // Initial fetch
+        const intervalId = setInterval(fetchData, 5000); // Poll every 5 seconds
+    
+        return () => clearInterval(intervalId); // Clean up interval on component unmount
     }, [userRoles]);
+    
+
+    // console.log(ordersData);
+
+    // const Itemstatus = ordersData.map(order => order.orderItems.map(item => 
+    //    [{
+    //         id : item.id ,
+    //         status : item.status
+    //     }]
+    // ));
+
+    // console.log('itemStatus',Itemstatus);
 
     const updateItemStatus = (orderId, itemId, status) => {
         setUpdatedStatuses(prev => ({
@@ -66,7 +83,7 @@ export function OperationsPage() {
             status: status === 'false' ? false : true 
         }));
 
-        console.log(updatedItems);
+        
 
         if (updatedItems.length > 0) {
             try {
@@ -87,10 +104,8 @@ export function OperationsPage() {
         }
     };
 
-    if (loading) {
-        return <LoadingSpinner />;
-    }
-
+  
+console.log('userRole', userRoles); 
     if (hasAccess) {
         return (
             <div className="operations-page">
@@ -158,11 +173,26 @@ export function OperationsPage() {
         );
     } else {
         return (
-            <div style={{ display:'flex', flexDirection : "column" , alignItems:"center" }}>
-                <img style={{width : "12rem" , marginBottom:"20rem" }} src="/zode_logo.png" alt="Zode logo" />
-                <h2>Access Denied <a href="/">Go to home page</a></h2>
+
+            <div>
+                {loading || !Object.keys(userRoles).length ? (
+                    <LoadingSpinner />
+                ) : (
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <img
+                            style={{ width: '12rem', marginBottom: '2rem' }}
+                            src="/zode_logo.png"
+                            alt="Zode logo"
+                        />
+                        <h2>
+                            Access Denied. <a href="/">Go to home page</a>
+                        </h2>
+                    </div>
+                )}
             </div>
-        );
+
+
+    );
     }
 }
 
