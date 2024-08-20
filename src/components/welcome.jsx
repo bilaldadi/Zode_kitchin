@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {Card1 , Card2, Card3, Card4} from './card1'
+import {Card1 , Card2, Card3, Card4,Card5} from './card1'
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -28,13 +28,16 @@ export function Welcome(){
                     <Link to='/beverages' style={{textDecoration: 'none'}}> <Card1/> </Link>
                 </div>
                 <div >
-                    <Link to='/snacks' style={{textDecoration: 'none'}}> <Card2/> </Link>
+                    <Link to='/hot_drinks' style={{textDecoration: 'none'}}> <Card2/> </Link>
                 </div>
                 <div >
-                    <Link to='/fruits' style={{textDecoration: 'none'}}> <Card3/> </Link>
+                    <Link to='/snacks' style={{textDecoration: 'none'}}> <Card3/> </Link>
                 </div>
                 <div >
-                    <Link to='/desserts' style={{textDecoration: 'none'}}> <Card4/> </Link>
+                    <Link to='/fruits' style={{textDecoration: 'none'}}> <Card4/> </Link>
+                </div>
+                <div >
+                    <Link to='/desserts' style={{textDecoration: 'none'}}> <Card5/> </Link>
                 </div>
             </div>
         </div>

@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-import { getBeverageData } from "../jsonData/beveragesData.js";
 import { Search } from "./Search.jsx";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -7,11 +6,12 @@ import { CartContext } from '../context/CartContext.js.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { Loading } from "./Loading.jsx";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { gethotDrinksData } from "../jsonData/hotDrinks.js";
 
 
-export function Beverages() {
+export function HotDrinks() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedPreferences, setSelectedPreferences] = useState({});
     const [addedItems, setAddedItems] = useState([]);
@@ -26,7 +26,7 @@ export function Beverages() {
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const data = await getBeverageData();
+            const data = await gethotDrinksData();
             setBeveragesData(data);
             setLoading(false);
             if(data.length === 0) {
@@ -89,7 +89,7 @@ export function Beverages() {
         <div>
             
             <div className="elements-container" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="300">
-                <h1>Cold Drinks</h1>
+                <h1>Hot Drinks</h1>
                 <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
                 {loading ? (

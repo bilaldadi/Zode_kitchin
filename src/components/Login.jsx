@@ -65,7 +65,7 @@ export function Login(){
 
     return(
       <div>
-        <ToastContainer />
+        
         <div className="welcome-div">
                 <h1>Welcome to <span><img className='mainLogo'  src='/zode_logo.png' alt="zode_logo" ></img></span> Kitchen</h1>
           </div>
@@ -110,12 +110,12 @@ export function Login(){
             <button type="submit" className="login-btn">Login</button>
           </div>
           <div className='under-login' >
-            <Link to='/signup' style={{textDecoration: 'none' , color:'whitesmoke'}}>
+            {/* <Link to='/signup' style={{textDecoration: 'none' , color:'whitesmoke'}}>
               <a>Dont have account?</a>
             </Link>
             <Link to='/resetpassword' style={{textDecoration: 'none', color:'whitesmoke'}}>
               <p>Forgot Password?</p>
-            </Link>
+            </Link> */}
           </div>
         </form>
       </div>

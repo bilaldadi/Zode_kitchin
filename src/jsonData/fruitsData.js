@@ -5,7 +5,7 @@ import { handleUnauthorized } from "../utils/auth.js";
 export const getFruitsData = async () => {
   try {
     const token = localStorage.getItem("authToken");
-    const res = await axios.get(`${ApiUrl}/api/v1/menu/3`, {
+    const res = await axios.get(`${ApiUrl}/api/v1/menu/4`, {
       headers: {
         "Content-type": "application/json",
         "Authorization": `Bearer ${token}`,

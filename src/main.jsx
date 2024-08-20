@@ -17,6 +17,7 @@ import { Desserts } from './components/Desserts.jsx';
 import {OperationsPage} from './components/Operations/OperationsPage.jsx';
 import { SignUp } from './components/SignUp.jsx';
 import { ForgotPassword } from './components/ForgotPassword.jsx';
+import { HotDrinks } from './components/HotDrinks.jsx';
 
 
 const MainLayout = () => (
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
         children: [
             { path: "/", element: <Welcome /> },
             { path: "beverages", element: <Beverages /> },
+            { path: "hot_drinks", element: <HotDrinks /> },
             { path: "snacks", element: <Snack /> },
             { path: "fruits", element: <Fruits /> },
             { path: "desserts", element: <Desserts /> },

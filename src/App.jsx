@@ -42,7 +42,7 @@ function App({ children }) {
     return <div>Loading...</div>;
   }
 
-  const hideNavbarAndFooter = location.pathname === '/operations';
+  const hideNavbarAndFooter = location.pathname === '/operations' || location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/resetpassword' || location.pathname === '/forgotpassword';
 
 
   return (

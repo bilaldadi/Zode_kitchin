@@ -1838,6 +1838,12 @@ h1 {
   transform: scale(1.030);
 }
 
+.status-buttons{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
 
 
 

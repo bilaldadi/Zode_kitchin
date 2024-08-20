@@ -6,14 +6,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "react-router-dom";
 
 export function ForgotPassword() {
-  const [email, setEmail] = useState('');
+  const [Newpassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleForgotPassword = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${ApiUrl}/auth/forgot-password`, {
-        email,
+      const response = await axios.post(`${ApiUrl}/api/v1/users/password`, {
+        Newpassword,
       });
 
       toast.success("Password reset link has been sent to your email!");

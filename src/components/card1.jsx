@@ -3,14 +3,26 @@ export function Card1() {
         <div className="card">
             <span></span>
             <div className="content">
-                <div className="text">Beverages</div>
-                <img src={"https://therecipecritic.com/wp-content/uploads/2023/05/lava_flow.jpg"} alt="Beverages" />
+                <div className="text">Cold Drinks</div>
+                <img src={"https://therecipecritic.com/wp-content/uploads/2023/05/lava_flow.jpg"} alt="Cold Drinks" />
             </div>
         </div>
     );
 }
 
 export function Card2() {
+    return (
+        <div className="card2">
+            <span></span>
+            <div className="content">
+                <div className="text">Hot Drinks</div>
+                <img src={"https://c.ndtvimg.com/2022-04/q1eefqk_green-tea_625x300_28_April_22.jpg?im=FaceCrop,algorithm=dnn,width=1200,height=675"} alt="Hot Drinks" />
+            </div>
+        </div>
+    );
+}
+
+export function Card3() {
     return (
         <div className="card2">
             <span></span>
@@ -22,7 +34,7 @@ export function Card2() {
     );
 }
 
-export function Card3() {
+export function Card4() {
     return (
         <div className="card">
             <span></span>
@@ -34,7 +46,7 @@ export function Card3() {
     );
 }
 
-export function Card4() {
+export function Card5() {
     return (
         <div className="card2">
             <span></span>

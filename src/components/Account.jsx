@@ -30,9 +30,9 @@ export function Account() {
                 try {
                     setIsLoading(true);
                     const data = await getUserOrder();
-                    if (data.length === 0) {
-                        toast.error("No orders found.");
-                    }
+                    // if (data.length === 0) {
+                    //     toast.warning("No orders found.");
+                    // }
                     setUserOrders(data);
                 } catch (error) {
                     toast.error("Some error occurred, please try again later");
@@ -41,6 +41,9 @@ export function Account() {
                 }
             };
             fetchData();
+            // const intervalId = setInterval(fetchData, 5000); // Poll every 5 seconds
+    
+            // return () => clearInterval(intervalId); // Clean up interval on component unmount
         }
     }, [userData]);
 
