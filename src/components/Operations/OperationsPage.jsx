@@ -289,7 +289,7 @@ export function OperationsPage() {
 
         if (updatedItems.length > 0) {
             try {
-                await axios.put(`${ApiUrl}/api/v1/orders/${orderId}`, { items: updatedItems }, {
+                await axios.patch(`${ApiUrl}/api/v1/orders/${orderId}`, { items: updatedItems }, {
                     headers: {
                         "Content-type": "application/json",
                         "Authorization": `Bearer ${token}`,
