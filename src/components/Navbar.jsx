@@ -67,11 +67,11 @@ const Navbar = () => {
                     </Link>
 
                     <Link to='/beverages' style={{textDecoration: 'none'}}>
-                        <div className="menu-item">Cold drinks</div>
+                        <div className="menu-item">Cold Drinks</div>
                     </Link>
 
                     <Link to='/hot_drinks' style={{textDecoration: 'none'}}>
-                        <div className="menu-item">Hot drinks</div>
+                        <div className="menu-item">Hot Drinks</div>
                     </Link>
                         
                     <Link to='/snacks' style={{textDecoration: 'none'}}>
@@ -145,12 +145,12 @@ const Navbar = () => {
                     </div>
                     <div className="menu-item">
                         <Link to='/beverages' style={{ textDecoration: 'none' }}>
-                            <span className="menu-item" onClick={toggleMenu}>Cold drinks</span>
+                            <span className="menu-item" onClick={toggleMenu}>Cold Drinks</span>
                         </Link>
                     </div>
                     <div className="menu-item">
                         <Link to='/hot_drinks' style={{ textDecoration: 'none' }}>
-                            <span className="menu-item" onClick={toggleMenu}>Hot drinks</span>
+                            <span className="menu-item" onClick={toggleMenu}>Hot Drinks</span>
                         </Link>
                     </div>
                     <div className="menu-item">

@@ -8,9 +8,15 @@ import { Link } from "react-router-dom";
 export function ForgotPassword() {
   const [Newpassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [email, setEmail] = useState('');
 
   const handleForgotPassword = async (e) => {
     e.preventDefault();
+
+    if(email === ''){
+      toast.error("Please enter your email!");
+      return;
+    }
 
     try {
       const response = await axios.post(`${ApiUrl}/api/v1/users/password`, {
@@ -26,9 +32,9 @@ export function ForgotPassword() {
 
   return (
     <div>
-      <ToastContainer />
+      
       <div className="welcome-div">
-        <h1>Forgot Password</h1>
+                <h1>Welcome to <span><img className='mainLogo'  src='/zode_logo.png' alt="zode_logo" ></img></span> Kitchen</h1>
       </div>
 
       <div className="account-page-container">
@@ -50,7 +56,7 @@ export function ForgotPassword() {
           </div>
           <div className='under-reset'>
             <Link to='/login' style={{textDecoration: 'none', color:'white'}}>
-              <a>Remembered your password? Login</a>
+              <p>Remembered your password? Login</p>
             </Link>
           </div>
         </form>

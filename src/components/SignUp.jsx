@@ -273,7 +273,12 @@ export function SignUp() {
   useEffect(() => {
     const fetchRooms = async () => {
         setLoading(true);
-        const roomsData = await getRoomsData();
+        var roomsData = await getRoomsData();
+
+        // get the rooms from 1 to 13 only 
+        roomsData = roomsData.filter(room => room.id >= 1 && room.id <= 13);
+
+
         setRooms(roomsData);
         setLoading(false);
     };
@@ -291,6 +296,11 @@ export function SignUp() {
   const handleSignUp = async (e) => {
     e.preventDefault();
 
+    if (name === '' || email === '' || password === '' || confirmPassword === '') {
+      toast.error("Please fill in all fields!");
+      return;
+    }
+
     if (password !== confirmPassword) {
       toast.error("Passwords do not match!");
       return;
@@ -303,10 +313,14 @@ export function SignUp() {
         password,
         phoneNumber,
         roomId,
-        newUserRole,
+        gender,
+        roles: [
+          "USER"
+      ],
       }, {
         headers: {
           "Content-type": "application/json",
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiLmRhZGlAem9kZS5zYSIsImlhdCI6MTcyNDIyNjU4MSwiZXhwIjoxNzI0OTE3NzgxfQ.57mh0f4VMcdajtDK6QqTfwFa7Vt7KO8e20iCDWK37Ew`,
           "Accept": "*/*",
           "ngrok-skip-browser-warning": "69420",
         },
@@ -322,8 +336,9 @@ export function SignUp() {
 
     return (
       <div>
+
         <div className="welcome-div">
-          <h1>Sign Up</h1>
+                <h1>Welcome to <span><img className='mainLogo'  src='/zode_logo.png' alt="zode_logo" ></img></span> Kitchen</h1>
         </div>
 
         <div className="account-page-container">
@@ -389,7 +404,7 @@ export function SignUp() {
               <label htmlFor="confirmPassword">Confirm Password:</label>
               <div className="password-wrapper">
                 <input
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword2 ? "text" : "password"}
                   id="confirmPassword"
                   name="confirmPassword"
                   placeholder="Confirm your password"
@@ -400,7 +415,7 @@ export function SignUp() {
                   className="toggle-password"
                   onClick={() => setShowPassword2(!showPassword2)}
                 >
-                  {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+                  {showPassword2 ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
                 </span>
               </div>
             </div>
@@ -409,11 +424,12 @@ export function SignUp() {
             </div>
             <div className='under-signup'>
               <Link to='/login' style={{ textDecoration: 'none', color:'white' }}>
-                Already have an account? Login
+                <p>Already have an account? Login</p>
               </Link>
             </div>
           </form>
         </div>
+
       </div>
     );
   }

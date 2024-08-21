@@ -111,7 +111,7 @@ export function Login(){
           </div>
           <div className='under-login' >
             <Link to='/signup' style={{textDecoration: 'none' , color:'whitesmoke'}}>
-              <a>Dont have account?</a>
+              <p>Don't have account?</p>
             </Link>
             <Link to='/resetpassword' style={{textDecoration: 'none', color:'whitesmoke'}}>
               <p>Forgot Password?</p>
