@@ -290,10 +290,10 @@ export function Account() {
                             </span>
                         </h1>
                     </div>
-                    {currentOrders.length > 0 ? (
+                    {Array.isArray(currentOrders) && currentOrders.length > 0 ? (
                         <h2 className='order-h2'>My Orders</h2>
                         ) : 
-                        <h2 className='order-h2'>You have no orders</h2>
+                        <h2  style={{marginTop : "12rem" , marginBottom:"12rem"}} className='order-h2'>You have no orders</h2>
                     }
 
                     {currentOrders.map((order) => (
@@ -339,7 +339,7 @@ export function Account() {
 
                     <Pagination 
                         ordersPerPage={ordersPerPage} 
-                        totalOrders={userOrders.length} 
+                        totalOrders={ Array.isArray(userOrders)  ? userOrders.length : 0 } 
                         paginate={paginate} 
                         currentPage={currentPage}
                     />

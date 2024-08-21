@@ -256,31 +256,29 @@ export function SignUp() {
   const [rooms, setRooms] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (userData && userData.authorities) {
-        const roles = userData.authorities.reduce((acc, authority) => {
-            acc[authority.id] = authority.authority;
-            return acc;
-        }, {});
-        setUserRoles(roles);
-        if (Object.values(roles).includes('ADMIN') || Object.values(roles).includes('HR')) {
-          setHasAccess(true);
-        }
-        setLoading(false);
-    }
-  }, [userData]);
+  // useEffect(() => {
+  //   if (userData && userData.authorities) {
+  //       const roles = userData.authorities.reduce((acc, authority) => {
+  //           acc[authority.id] = authority.authority;
+  //           return acc;
+  //       }, {});
+  //       setUserRoles(roles);
+  //       if (Object.values(roles).includes('ADMIN') || Object.values(roles).includes('HR')) {
+  //         setHasAccess(true);
+  //       }
+  //       setLoading(false);
+  //   }
+  // }, [userData]);
 
   useEffect(() => {
     const fetchRooms = async () => {
-      if(hasAccess){
         setLoading(true);
         const roomsData = await getRoomsData();
         setRooms(roomsData);
         setLoading(false);
-      }
     };
     fetchRooms();
-  }, [hasAccess]);
+  }, []);
 
   const handleRoomChange = (e) => {
     setRoomId(e.target.value);
@@ -299,7 +297,6 @@ export function SignUp() {
     }
 
     try {
-      const token = localStorage.getItem("authToken");
       const response = await axios.post(`${ApiUrl}/api/v1/users`, {
         name,
         email,
@@ -310,7 +307,6 @@ export function SignUp() {
       }, {
         headers: {
           "Content-type": "application/json",
-          "Authorization": `Bearer ${token}`,
           "Accept": "*/*",
           "ngrok-skip-browser-warning": "69420",
         },
@@ -324,7 +320,6 @@ export function SignUp() {
     }
   };
 
-  if(hasAccess){
     return (
       <div>
         <div className="welcome-div">
@@ -421,24 +416,25 @@ export function SignUp() {
         </div>
       </div>
     );
-  } else {
-    return (
-      <div>
-        {loading || !Object.keys(userRoles).length ? (
-          <LoadingSpinner />
-        ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <img
-              style={{ width: '12rem', marginBottom: '2rem' }}
-              src="/zode_logo.png"
-              alt="Zode logo"
-            />
-            <h2>
-              Access Denied. <a href="/">Go to home page</a>
-            </h2>
-          </div>
-        )}
-      </div>
-    );
   }
-}
+//   } else {
+//     return (
+//       <div>
+//         {loading || !Object.keys(userRoles).length ? (
+//           <LoadingSpinner />
+//         ) : (
+//           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+//             <img
+//               style={{ width: '12rem', marginBottom: '2rem' }}
+//               src="/zode_logo.png"
+//               alt="Zode logo"
+//             />
+//             <h2>
+//               Access Denied. <a href="/">Go to home page</a>
+//             </h2>
+//           </div>
+//         )}
+//       </div>
+//     );
+//   }
+// }

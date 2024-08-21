@@ -16,6 +16,7 @@
 //     const [hasAccess, setHasAccess] = useState(false);
 //     const [updatedStatuses, setUpdatedStatuses] = useState({});
 //     const [previousOrderIds, setPreviousOrderIds] = useState([]); // To track previous order IDs
+//     const [soundEnabled, setSoundEnabled] = useState(false); // To track if sound is allowed
 
 //     useEffect(() => {
 //         if (userData && userData.authorities) {
@@ -42,7 +43,7 @@
 //                     // Compare currentOrderIds with previousOrderIds to detect new orders
 //                     const newOrdersExist = currentOrderIds.some(orderId => !previousOrderIds.includes(orderId));
 
-//                     if (newOrdersExist) {
+//                     if (newOrdersExist && soundEnabled) {
 //                         playSound();
 //                     }
 
@@ -59,16 +60,23 @@
 //         };
     
 //         fetchData(); // Initial fetch
-//         const intervalId = setInterval(fetchData, 5000); // Poll every 5 seconds
+//         const intervalId = setInterval(fetchData, 30000); 
     
-//         return () => clearInterval(intervalId); // Clean up interval on component unmount
-//     }, [userRoles, previousOrderIds]);
+//         return () => clearInterval(intervalId); 
+//     }, [userRoles, previousOrderIds, soundEnabled]);
 
 //     const playSound = () => {
 //         const audio = document.getElementById("newOrderSound");
 //         if (audio) {
-//             audio.play();
+//             audio.play().catch(error => {
+//                 console.error("Error playing sound:", error);
+//             });
 //         }
+//     };
+
+//     const enableSound = () => {
+//         setSoundEnabled(true);
+//         playSound(); // Play sound once to ensure it's allowed after user interaction
 //     };
 
 //     const updateItemStatus = (orderId, itemId, status) => {
@@ -112,7 +120,15 @@
 
 //     return (
 //         <div className="operations-page">
-//             <audio id="newOrderSound" src="/sounds/new-order-sound.wav" preload="auto"></audio>
+//             <audio id="newOrderSound" src="/new-order-sound.wav" preload="auto"></audio> {/* Add your sound file here */}
+
+//             {!soundEnabled && (
+//                 <div>
+//                     <button onClick={enableSound} className="enable-sound-button">
+//                         Enable Sound for New Orders
+//                     </button>
+//                 </div>
+//             )}
 
 //             {hasAccess ? (
 //                 <div className="operations-page">
@@ -233,6 +249,16 @@ export function OperationsPage() {
     }, [userData]);
 
     useEffect(() => {
+        // Enable sound after any user interaction
+        const enableSoundAfterInteraction = () => {
+            setSoundEnabled(true);
+            window.removeEventListener('click', enableSoundAfterInteraction);
+            window.removeEventListener('scroll', enableSoundAfterInteraction);
+        };
+
+        window.addEventListener('click', enableSoundAfterInteraction);
+        window.addEventListener('scroll', enableSoundAfterInteraction);
+
         const fetchData = async () => {
             if (Object.values(userRoles).includes('ADMIN') || Object.values(userRoles).includes('OPERATIONS')) {
                 setLoading(true);
@@ -261,9 +287,13 @@ export function OperationsPage() {
         };
     
         fetchData(); // Initial fetch
-        const intervalId = setInterval(fetchData, 5000); // Poll every 5 seconds
+        const intervalId = setInterval(fetchData, 30000); // Poll every 5 seconds
     
-        return () => clearInterval(intervalId); // Clean up interval on component unmount
+        return () => {
+            clearInterval(intervalId); // Clean up interval on component unmount
+            window.removeEventListener('click', enableSoundAfterInteraction);
+            window.removeEventListener('scroll', enableSoundAfterInteraction);
+        };
     }, [userRoles, previousOrderIds, soundEnabled]);
 
     const playSound = () => {
@@ -273,11 +303,6 @@ export function OperationsPage() {
                 console.error("Error playing sound:", error);
             });
         }
-    };
-
-    const enableSound = () => {
-        setSoundEnabled(true);
-        playSound(); // Play sound once to ensure it's allowed after user interaction
     };
 
     const updateItemStatus = (orderId, itemId, status) => {
@@ -322,14 +347,6 @@ export function OperationsPage() {
     return (
         <div className="operations-page">
             <audio id="newOrderSound" src="/new-order-sound.wav" preload="auto"></audio> {/* Add your sound file here */}
-
-            {!soundEnabled && (
-                <div>
-                    <button onClick={enableSound} className="enable-sound-button">
-                        Enable Sound for New Orders
-                    </button>
-                </div>
-            )}
 
             {hasAccess ? (
                 <div className="operations-page">
@@ -415,3 +432,4 @@ export function OperationsPage() {
         </div>
     );
 }
+
