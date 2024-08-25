@@ -124,7 +124,7 @@ export function OperationsPage() {
 
             {!soundEnabled && (
                 <div>
-                    <button onClick={enableSound} className="btn">
+                    <button onClick={enableSound} className="enable-sound-button">
                         Enable Sound for New Orders
                     </button>
                 </div>
