@@ -108,7 +108,7 @@ export function OperationsPage() {
                     },
                 });
                 toast.success("Order status updated successfully");
-                window.location.reload();
+                // window.location.reload();
             } catch (error) {
                 console.error(error);
                 toast.error("Failed to update order status");
