@@ -1,3 +1,3 @@
-const ApiUrl = 'https://app-kitchen.zode.sa';
+const ApiUrl = 'https://app-kitchen.zode.live';
 
 export default ApiUrl;
