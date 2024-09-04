@@ -1,3 +1,3 @@
-const ApiUrl = 'https://cb80-51-36-94-188.ngrok-free.app';
+const ApiUrl = 'https://app-kitchen.zode.sa';
 
 export default ApiUrl;
