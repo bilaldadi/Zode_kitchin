@@ -7,7 +7,7 @@ import { CartContext } from '../context/CartContext.js.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { Loading } from "./Loading.jsx";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export function Desserts() {
@@ -93,6 +93,7 @@ export function Desserts() {
                 ) : (
                     <div className="bCrad_contanier">
                         {filteredDesserts.map((dessert) => (
+                            !dessert.available ? null :
                             <div key={dessert.id} className="bcard">
                                 <div className="image_container">
                                     <img src={dessert.imgUrl} alt={dessert.name} />

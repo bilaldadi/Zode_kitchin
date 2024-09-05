@@ -98,6 +98,7 @@ export function Snack() {
 
                 <div className="bCrad_contanier">
                     {filteredSnacks.map((snack) => (
+                        !snack.available ? null :
                         <div key={snack.id} className="bcard">
                             <div className="image_container">
                                 <img src={snack.imgUrl} alt={snack.name} />

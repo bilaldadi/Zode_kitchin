@@ -7,7 +7,7 @@ import { CartContext } from '../context/CartContext.js.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { Loading } from "./Loading.jsx";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -103,6 +103,8 @@ export function Beverages() {
                 ) : (
                 <div className="bCrad_contanier">
                     {filteredBeverages.map((beverage) => (
+                        // if beverage.available is false, then don't show the beverage
+                        !beverage.available ? null :
                         <div key={beverage.id} className="bcard">
                             <div className="image_container">
                                 <img src={beverage.imgUrl} alt={beverage.name} />

@@ -94,6 +94,7 @@ export function Fruits() {
                 ) : (
                     <div className="bCrad_contanier">
                         {filteredFruits.map((fruit) => (
+                            !fruit.available ? null :
                             <div key={fruit.id} className="bcard">
                                 <div className="image_container">
                                     <img src={fruit.imgUrl} alt={fruit.name} />

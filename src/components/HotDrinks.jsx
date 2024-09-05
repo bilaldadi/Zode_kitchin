@@ -103,6 +103,7 @@ export function HotDrinks() {
                 ) : (
                 <div className="bCrad_contanier">
                     {filteredBeverages.map((beverage) => (
+                        !beverage.available ? null :
                         <div key={beverage.id} className="bcard">
                             <div className="image_container">
                                 <img src={beverage.imgUrl} alt={beverage.name} />
