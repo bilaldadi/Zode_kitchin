@@ -513,7 +513,7 @@ body.no-scroll {
 }
 
   .title {
-    overflow: clip;
+    overflow: visible;
     width: 100%;
     font-size: 1rem;
     font-weight: 600;
