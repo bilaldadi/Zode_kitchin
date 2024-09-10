@@ -1,6 +1,8 @@
 {
     "name": "Zode Kithcen",
     "short_name": "Zode Kithcen",
+    "start_url": "/",
+    "display": "standalone",
     "description": "An ordering app for Zode Kithcen",
     "icons": [
       {
@@ -13,10 +15,7 @@
         "sizes": "512x512",
         "type": "image/png"
       }
-    ],
-    "start_url": "/",
-    "background_color": "#04033f",
-    "display": "standalone"
+    ]
     
   }
   

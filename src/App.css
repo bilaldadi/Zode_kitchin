@@ -1158,6 +1158,13 @@ h1 {
   border-color: #0056b3;
 }
 
+@media (max-width: 768px) {
+  .cart-summary {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 /* .cart-summary label {
   font-size: 14px;
   color: #333;
@@ -1167,7 +1174,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
 }
 
 .total-label {
