@@ -484,7 +484,7 @@ body.no-scroll {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 1rem;
+    /* gap: 1rem; */
     padding: 1rem;
     width: 15rem;
     height: 22rem;
