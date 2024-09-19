@@ -130,7 +130,7 @@ export function SignUp() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="phoneNumber">Phone Number:</label>
+            <label htmlFor="phoneNumber">Phone Number: <span style={{fontSize:'15px' , color:'gray'}}>&nbsp; ex(05xxxxxxxx)</span></label>
             <input
               type="text"
               id="mobile"
@@ -151,6 +151,7 @@ export function SignUp() {
           <div className="form-group">
             <label htmlFor="room">Your Office:</label>
             <select onChange={handleRoomChange} value={roomId}>
+              <option value=''>Select Office</option>
               {roomsfinal.map(room => (
                 <option key={room.id} value={room.id}>{room.name}</option>
               ))}
