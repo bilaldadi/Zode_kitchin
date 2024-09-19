@@ -60,7 +60,7 @@ export function OperationsPage() {
         };
     
         fetchData(); // Initial fetch
-        const intervalId = setInterval(fetchData, 3000); 
+        const intervalId = setInterval(fetchData, 6000); 
     
         return () => clearInterval(intervalId); 
     }, [userRoles, previousOrderIds, soundEnabled]);
