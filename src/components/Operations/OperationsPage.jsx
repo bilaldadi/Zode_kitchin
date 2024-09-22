@@ -118,6 +118,8 @@ export function OperationsPage() {
         }
     };
 
+    console.log(ordersData);
+
     return (
         <div className="operations-page">
             <audio id="newOrderSound" src="/new-order-sound.wav" preload="auto"></audio> {/* Add your sound file here */}
@@ -147,6 +149,7 @@ export function OperationsPage() {
                                     <div className="order-card-ff">
                                         <h3>Order #{order.id}</h3>
                                         <p style={{fontWeight : "800"}}>{order.room.name}</p>
+                                        <p style={{fontWeight : "800" , color:"#01d0b7"}}>{order.user.name}</p>
                                         <button onClick={() => submitOrderUpdates(order.id)} className="operations-btn-done">Submit</button>
                                     </div>
                                     <h3>Order Items:</h3>
