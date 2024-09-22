@@ -67,6 +67,16 @@ export function SignUp() {
       return;
     }
 
+    if(mobile.length !== 10 || mobile.startsWith('0') === false){
+      toast.error("Please enter a valid phone number!");
+      return;
+    }
+
+    if(password.length < 6){
+      toast.error("Password must be at least 6 characters long!");
+      return;
+    }
+
     if (password !== confirmPassword) {
       toast.error("Passwords do not match!");
       return;
