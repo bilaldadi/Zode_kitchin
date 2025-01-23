@@ -2,13 +2,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram,faFacebookF,faXTwitter,faLinkedinIn,faTiktok } from '@fortawesome/free-brands-svg-icons'
 
 export default function Footer() {
-
+const currentYear = new Date().getFullYear();
 
 
     return(
         <div className="footer">
             <div className="footer-rights">
-                <p> © 2024 Zode. All Rights Reserved. </p>
+                <p> © {currentYear} Zode. All Rights Reserved. </p>
             </div>
             <div className="social-container">
                 <a target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}} href="https://www.instagram.com/zode_sa/?igshid=MzMyNGUyNmU2YQ%3D%3D&utm_source=qr">
