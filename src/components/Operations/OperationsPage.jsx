@@ -57,7 +57,7 @@ export function OperationsPage() {
         };
 
         fetchData();
-        const intervalId = setInterval(fetchData, 180000);
+        const intervalId = setInterval(fetchData, 6000);
 
         return () => clearInterval(intervalId);
     }, [hasAccess, soundEnabled]);
