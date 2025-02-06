@@ -24,7 +24,8 @@ export function OperationsPage() {
         if (userData?.authorities) {
             const roles = userData.authorities.map(auth => auth.authority);
             setUserRoles(roles);
-            setLoading(roles.length === 0);
+            setHasAccess(roles.includes("ADMIN") || roles.includes("OPERATIONS")); // ✅ Ensure access is updated correctly
+            setLoading(false);
         }
     }, [userData]);
 
@@ -34,18 +35,14 @@ export function OperationsPage() {
             if (now - lastFetchTime.current < 180000) return;
             lastFetchTime.current = now;
 
-            if (!userRoles.includes("ADMIN") && !userRoles.includes("OPERATIONS")) {
-                setLoading(false);
-                return;
-            }
+            if (!hasAccess) return;
 
             setLoading(true);
-            setHasAccess(true);
             try {
                 const data = await getAllPendingOrders();
                 const currentOrderIds = (data || []).map(order => order.id);
 
-                // Detect new orders
+                // Detect new orders and play sound
                 if (soundEnabled && currentOrderIds.some(orderId => !previousOrderIdsRef.current.includes(orderId))) {
                     playSound();
                 }
@@ -63,7 +60,7 @@ export function OperationsPage() {
         const intervalId = setInterval(fetchData, 180000);
 
         return () => clearInterval(intervalId);
-    }, [userRoles, soundEnabled]);
+    }, [hasAccess, soundEnabled]);
 
     const playSound = () => {
         const audio = document.getElementById("newOrderSound");
@@ -127,7 +124,9 @@ export function OperationsPage() {
                 </div>
             )}
 
-            {hasAccess ? (
+            {loading ? (
+                <LoadingSpinner />
+            ) : hasAccess ? (
                 <div className="operations-page">
                     <div className="opertaions-intro">
                         <div style={{ width: "37%" }}>
@@ -197,17 +196,11 @@ export function OperationsPage() {
                     </div>
                 </div>
             ) : (
-                <div>
-                    {loading ? (
-                        <LoadingSpinner />
-                    ) : (
-                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                            <img style={{ width: "12rem", marginBottom: "2rem" }} src="/zode_logo.png" alt="Zode logo" />
-                            <h2>
-                                Access Denied. <a href="/">Go to home page</a>
-                            </h2>
-                        </div>
-                    )}
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    <img style={{ width: "12rem", marginBottom: "2rem" }} src="/zode_logo.png" alt="Zode logo" />
+                    <h2>
+                        Access Denied. <a href="/">Go to home page</a>
+                    </h2>
                 </div>
             )}
         </div>
