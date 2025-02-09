@@ -32,7 +32,7 @@ export function OperationsPage() {
 useEffect(() => {
     const fetchData = async () => {
         const now = Date.now();
-        if (now - lastFetchTime.current < 60000) return; // ✅ 1 min interval
+        if (now - lastFetchTime.current < 10000) return; // ✅ 1 min interval
         lastFetchTime.current = now;
 
         if (!hasAccess) return;
@@ -58,7 +58,7 @@ useEffect(() => {
 
     fetchData(); // ✅ Fetch immediately when component mounts
 
-    const intervalId = setInterval(fetchData, 60000); // ✅ Fetch every 1 min
+    const intervalId = setInterval(fetchData, 10000); // ✅ Fetch every 1 min
 
     return () => clearInterval(intervalId);
 }, [hasAccess, soundEnabled]);
