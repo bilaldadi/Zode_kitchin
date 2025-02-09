@@ -20,47 +20,48 @@ export function OperationsPage() {
     const previousOrderIdsRef = useRef([]);
     const lastFetchTime = useRef(0);
 
-    useEffect(() => {
-        if (userData?.authorities) {
-            const roles = userData.authorities.map(auth => auth.authority);
-            setUserRoles(roles);
-            setHasAccess(roles.includes("ADMIN") || roles.includes("OPERATIONS")); // ✅ Ensure access is updated correctly
+   useEffect(() => {
+    if (userData?.authorities) {
+        const roles = userData.authorities.map(auth => auth.authority);
+        setUserRoles(roles);
+        setHasAccess(roles.includes("ADMIN") || roles.includes("OPERATIONS"));
+        setLoading(false);
+    }
+}, [userData]);
+
+useEffect(() => {
+    const fetchData = async () => {
+        const now = Date.now();
+        if (now - lastFetchTime.current < 60000) return; // ✅ 1 min interval
+        lastFetchTime.current = now;
+
+        if (!hasAccess) return;
+
+        setLoading(true);
+        try {
+            const data = await getAllPendingOrders();
+            const currentOrderIds = (data || []).map(order => order.id);
+
+            // Detect new orders and play sound
+            if (soundEnabled && currentOrderIds.some(orderId => !previousOrderIdsRef.current.includes(orderId))) {
+                playSound();
+            }
+
+            setOrdersData(data || []);
+            previousOrderIdsRef.current = currentOrderIds;
+        } catch (error) {
+            toast.error("Failed to fetch orders data");
+        } finally {
             setLoading(false);
         }
-    }, [userData]);
+    };
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const now = Date.now();
-            if (now - lastFetchTime.current < 6000) return;
-            lastFetchTime.current = now;
+    fetchData(); // ✅ Fetch immediately when component mounts
 
-            if (!hasAccess) return;
+    const intervalId = setInterval(fetchData, 60000); // ✅ Fetch every 1 min
 
-            setLoading(true);
-            try {
-                const data = await getAllPendingOrders();
-                const currentOrderIds = (data || []).map(order => order.id);
-
-                // Detect new orders and play sound
-                if (soundEnabled && currentOrderIds.some(orderId => !previousOrderIdsRef.current.includes(orderId))) {
-                    playSound();
-                }
-
-                setOrdersData(data || []);
-                previousOrderIdsRef.current = currentOrderIds;
-            } catch (error) {
-                toast.error("Failed to fetch orders data");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-        const intervalId = setInterval(fetchData, 6000);
-
-        return () => clearInterval(intervalId);
-    }, [hasAccess, soundEnabled]);
+    return () => clearInterval(intervalId);
+}, [hasAccess, soundEnabled]);
 
     const playSound = () => {
         const audio = document.getElementById("newOrderSound");
