@@ -32,7 +32,7 @@ export function OperationsPage() {
     useEffect(() => {
         const fetchData = async () => {
             const now = Date.now();
-            if (now - lastFetchTime.current < 180000) return;
+            if (now - lastFetchTime.current < 6000) return;
             lastFetchTime.current = now;
 
             if (!hasAccess) return;
